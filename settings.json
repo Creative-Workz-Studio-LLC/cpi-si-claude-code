@@ -1,0 +1,470 @@
+{
+  "cleanupPeriodDays": 90,
+  "env": {
+    "EDITOR": "nano",
+    "VISUAL": "nano",
+    "PAGER": "less",
+    "LANG": "en_US.UTF-8",
+    "LC_ALL": "en_US.UTF-8",
+    "TERM": "xterm-256color",
+    "COLORTERM": "truecolor",
+    "MAX_THINKING_TOKENS": "10000",
+    "BASH_MAX_TIMEOUT_MS": "300000",
+    "GIT_EDITOR": "nano",
+    "GIT_PAGER": "less -FRX",
+    "RUST_BACKTRACE": "1",
+    "CARGO_TERM_COLOR": "always",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1",
+    "NODE_ENV": "development",
+    "NPM_CONFIG_COLOR": "always",
+    "GOPATH": "/home/seanje-lenox-wise/go",
+    "DEBIAN_FRONTEND": "noninteractive",
+    "NEEDRESTART_MODE": "a",
+    "NEEDRESTART_SUSPEND": "1",
+    "PIP_NO_INPUT": "1",
+    "NPM_CONFIG_YES": "true",
+    "_comment_instance": "Instance-specific configuration (Nova Dawn)",
+    "NOVA_DAWN_WORKSPACE": "/media/seanje-lenox-wise/Project/CreativeWorkzStudio_LLC",
+    "_comment_framework": "CPI-SI Framework paths",
+    "CPI_SI_BIBLICAL_PATH": "/media/seanje-lenox-wise/Project/CreativeWorkzStudio_LLC/divisions/tech/language/biblical",
+    "CPI_SI_SKILLS_PATH": "/home/seanje-lenox-wise/.claude/skills",
+    "CPI_SI_SYSTEM_PATH": "/home/seanje-lenox-wise/.claude/system",
+    "CPI_SI_CONFIG_PATH": "/home/seanje-lenox-wise/.claude/cpi-si/config",
+    "CPI_SI_DATA_PATH": "/home/seanje-lenox-wise/.claude/cpi-si/system/data",
+    "CPI_SI_TEMPORAL_PATH": "/home/seanje-lenox-wise/.claude/cpi-si/system/data/temporal"
+  },
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [
+      "Read(**/*.md)",
+      "Read(**/*.txt)",
+      "Read(**/*.rst)",
+      "Read(**/src/**)",
+      "Read(**/lib/**)",
+      "Read(**/include/**)",
+      "Read(**/tests/**)",
+      "Read(**/test/**)",
+      "Read(**/docs/**)",
+      "Read(**/examples/**)",
+      "Read(**/scripts/**)",
+      "Read(package.json)",
+      "Read(package-lock.json)",
+      "Read(*.toml)",
+      "Read(*.yaml)",
+      "Read(*.yml)",
+      "Read(*.json)",
+      "Read(*.jsonc)",
+      "Read(*.xml)",
+      "Read(*.ini)",
+      "Read(*.cfg)",
+      "Read(Makefile)",
+      "Read(CMakeLists.txt)",
+      "Read(Dockerfile)",
+      "Read(.dockerignore)",
+      "Read(README*)",
+      "Read(LICENSE*)",
+      "Read(CHANGELOG*)",
+      "Read(CONTRIBUTING*)",
+      "Read(.gitignore)",
+      "Read(.gitattributes)",
+      "Read(.editorconfig)",
+      "Read(.prettierrc*)",
+      "Read(.eslintrc*)",
+      "Read(.claude/**)",
+      "Read(/media/seanje-lenox-wise/Project/CreativeWorkzStudio_LLC/**)",
+      "Write(**/*.rs)",
+      "Write(**/*.go)",
+      "Write(**/*.c)",
+      "Write(**/*.cpp)",
+      "Write(**/*.h)",
+      "Write(**/*.hpp)",
+      "Write(**/*.py)",
+      "Write(**/*.js)",
+      "Write(**/*.ts)",
+      "Write(**/*.jsx)",
+      "Write(**/*.tsx)",
+      "Write(**/*.html)",
+      "Write(**/*.css)",
+      "Write(**/*.scss)",
+      "Write(**/*.md)",
+      "Write(**/*.txt)",
+      "Write(**/*.jsonc)",
+      "Write(**/*.sql)",
+      "Write(**/*.sh)",
+      "Write(.claude/commands/**)",
+      "Write(.claude/agents/**)",
+      "Write(.claude/output-styles/**)",
+      "Edit(**/*.rs)",
+      "Edit(**/*.go)",
+      "Edit(**/*.c)",
+      "Edit(**/*.cpp)",
+      "Edit(**/*.h)",
+      "Edit(**/*.hpp)",
+      "Edit(**/*.py)",
+      "Edit(**/*.js)",
+      "Edit(**/*.ts)",
+      "Edit(**/*.jsx)",
+      "Edit(**/*.tsx)",
+      "Edit(**/*.html)",
+      "Edit(**/*.css)",
+      "Edit(**/*.scss)",
+      "Edit(**/*.md)",
+      "Edit(**/*.txt)",
+      "Edit(**/*.jsonc)",
+      "Edit(**/*.sql)",
+      "Edit(**/*.sh)",
+      "Bash(npm run test:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run start:*)",
+      "Bash(npm test:*)",
+      "Bash(npm run check:*)",
+      "Bash(cargo test:*)",
+      "Bash(cargo build:*)",
+      "Bash(cargo check:*)",
+      "Bash(cargo run:*)",
+      "Bash(cargo clippy:*)",
+      "Bash(cargo fmt:*)",
+      "Bash(make test:*)",
+      "Bash(make build:*)",
+      "Bash(make clean:*)",
+      "Bash(make check:*)",
+      "Bash(pytest:*)",
+      "Bash(python -m pytest:*)",
+      "Bash(go test:*)",
+      "Bash(go build:*)",
+      "Bash(go run:*)",
+      "Bash(go fmt:*)",
+      "Bash(go vet:*)",
+      "Bash(gcc:*)",
+      "Bash(g++:*)",
+      "Bash(clang:*)",
+      "Bash(cmake:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git branch:*)",
+      "Bash(git branch -D:*)",
+      "Bash(git checkout:*)",
+      "Bash(git switch:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git stash:*)",
+      "Bash(git fetch:*)",
+      "Bash(git pull:*)",
+      "Bash(git remote:*)",
+      "Bash(git tag:*)",
+      "Bash(git describe:*)",
+      "Bash(git blame:*)",
+      "Bash(git reflog:*)",
+      "Bash(gh repo:*)",
+      "Bash(gh issue:*)",
+      "Bash(gh auth status:*)",
+      "Bash(ls:*)",
+      "Bash(ll:*)",
+      "Bash(la:*)",
+      "Bash(pwd:*)",
+      "Bash(cd:*)",
+      "Bash(pushd:*)",
+      "Bash(popd:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(less:*)",
+      "Bash(more:*)",
+      "Bash(echo:*)",
+      "Bash(printf:*)",
+      "Bash(which:*)",
+      "Bash(whereis:*)",
+      "Bash(whoami:*)",
+      "Bash(hostname:*)",
+      "Bash(date:*)",
+      "Bash(cal:*)",
+      "Bash(uptime:*)",
+      "Bash(uname:*)",
+      "Bash(df:*)",
+      "Bash(du:*)",
+      "Bash(free:*)",
+      "Bash(ps:*)",
+      "Bash(top:*)",
+      "Bash(htop:*)",
+      "Bash(lscpu:*)",
+      "Bash(lsblk:*)",
+      "Bash(mount:*)",
+      "Bash(env:*)",
+      "Bash(printenv:*)",
+      "Bash(export:*)",
+      "Bash(history:*)",
+      "Bash(grep:*)",
+      "Bash(sed:*)",
+      "Bash(awk:*)",
+      "Bash(cut:*)",
+      "Bash(sort:*)",
+      "Bash(uniq:*)",
+      "Bash(wc:*)",
+      "Bash(diff:*)",
+      "Bash(find:*)",
+      "Bash(xargs:*)",
+      "Bash(tree:*)",
+      "Bash(file:*)",
+      "Bash(stat:*)",
+      "Bash(touch:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(chmod:*)",
+      "Bash(chown:*)",
+      "Bash(node --version:*)",
+      "Bash(npm --version:*)",
+      "Bash(npx --version:*)",
+      "Bash(cargo --version:*)",
+      "Bash(rustc --version:*)",
+      "Bash(rustup --version:*)",
+      "Bash(python --version:*)",
+      "Bash(python3 --version:*)",
+      "Bash(pip --version:*)",
+      "Bash(go version:*)",
+      "Bash(gcc --version:*)",
+      "Bash(g++ --version:*)",
+      "Bash(clang --version:*)",
+      "Bash(cmake --version:*)",
+      "Bash(make --version:*)",
+      "Bash(git --version:*)",
+      "Bash(gh --version:*)",
+      "Glob(**)",
+      "Grep(*)",
+      "Read(*)",
+      "TodoWrite(*)",
+      "Task(*)",
+      "SlashCommand(*)",
+
+      "WebSearch",
+      "WebFetch(domain:www.anthropic.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:tip.golang.org)",
+      "WebFetch(domain:support.claude.com)",
+      "WebFetch(domain:pkg.go.dev)",
+      "WebFetch(domain:go.dev)",
+
+      "mcp__ide__getDiagnostics",
+
+      "Skill(session-awareness)",
+      "Skill(recognize-stopping-point)",
+      "Skill(create-journal-entry)",
+      "Skill(recognize-pattern)",
+      "Skill(meta-awareness)",
+      "Skill(reflect-on-session)",
+      "Skill(integrate-learning)",
+      "Skill(create-from-template)",
+
+      "Bash(~/.claude/system/bin/status:*)",
+      "Bash(~/.claude/system/bin/validate:*)",
+      "Bash(~/.claude/system/bin/test:*)",
+      "Bash(~/.claude/system/bin/session-time:*)",
+      "Bash(~/.claude/system/bin/session-time init:*)",
+      "Bash(~/.claude/system/bin/session-time check:*)",
+      "Bash(~/.claude/system/bin/session-log:*)",
+      "Bash(~/.claude/system/bin/session-log status:*)",
+      "Bash(~/.claude/system/bin/session-patterns:*)",
+      "Bash(~/.claude/system/bin/session-patterns check:*)",
+      "Bash(~/.claude/system/bin/session-patterns learn:*)",
+      "Bash(~/.claude/system/bin/session-patterns show:*)",
+      "Bash(~/.claude/system/bin/activity-analyze:*)",
+      "Bash(~/.claude/system/bin/check-awareness:*)",
+      "Bash(~/.claude/system/bin/analyze-stopping-point:*)",
+      "Bash(~/.claude/system/bin/pattern-detector:*)",
+      "Bash(~/.claude/system/bin/create-entry:*)",
+      "Bash(~/.claude/system/bin/git-to-session-history:*)",
+      "Bash(~/.claude/system/bin/integration-helper:*)",
+      "Bash(~/.claude/system/bin/session-time-awareness:*)",
+      "Bash(~/.claude/system/bin/external-time:*)",
+      "Bash(~/.claude/system/bin/schedule-init:*)",
+      "Bash(~/.claude/system/bin/schedule-check:*)",
+      "Bash(~/.claude/system/bin/schedule-update:*)",
+      "Bash(~/.claude/system/bin/calendar-generate:*)",
+      "Bash(~/.claude/system/bin/calendar-query:*)",
+      "Bash(~/.claude/system/bin/planner-view:*)",
+      "Bash(~/.claude/system/bin/planner-update:*)",
+      "Bash(~/.claude/system/bin/calendar-overlay:*)",
+      "Bash(~/.claude/system/bin/availability-check:*)",
+
+      "Bash(while read f)",
+      "Bash(done)",
+      "Bash(for f in session/start.go session/end.go session/stop.go session/subagent-stop.go session/notification.go session/pre-compact.go tool/pre-use.go tool/post-use.go prompt/submit.go)",
+      "Bash(do echo \"=== $f ===\")",
+      "Bash(for file in /home/seanje-lenox-wise/.claude/hooks/lib/{feedback,monitoring,safety,validation}/*.go)",
+      "Bash(./build.sh)",
+      "Bash(/home/seanje-lenox-wise/.claude/hooks/session/start)"
+    ],
+    "deny": [
+      "Bash(:*--no-verify:*)",
+      "Bash(:*--no-gpg-sign:*)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(git rebase:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git cherry-pick:*)",
+      "Bash(git merge:*)",
+      "Bash(gh pr create:*)",
+      "Bash(gh pr merge:*)",
+      "Bash(gh release create:*)",
+      "Bash(npm install:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm update:*)",
+      "Bash(cargo install:*)",
+      "Bash(cargo update:*)",
+      "Bash(pip install:*)",
+      "Bash(pip uninstall:*)",
+      "Bash(go get:*)",
+      "Bash(go install:*)",
+      "Bash(rustup update:*)",
+      "Bash(rustup install:*)",
+      "Bash(rm -rf:*)",
+      "Bash(rm -r:*)",
+      "Bash(sudo:*)",
+      "Bash(shutdown:*)",
+      "Bash(reboot:*)",
+      "Bash(systemctl:*)",
+      "Bash(service:*)",
+      "Write(package.json)",
+      "Write(package-lock.json)",
+      "Write(Cargo.toml)",
+      "Write(Cargo.lock)",
+      "Write(go.mod)",
+      "Write(go.sum)",
+      "Write(requirements.txt)",
+      "Write(Pipfile)",
+      "Write(poetry.lock)",
+      "Write(.gitignore)",
+      "Write(.git/**)",
+      "Write(Makefile)",
+      "Write(CMakeLists.txt)",
+      "Write(Dockerfile)",
+      "Write(.dockerignore)",
+      "Write(.env.example)",
+      "Write(*.yaml)",
+      "Write(*.yml)",
+      "Write(*.toml)",
+      "Write(*.json)",
+      "Edit(package.json)",
+      "Edit(Cargo.toml)",
+      "Edit(go.mod)",
+      "Edit(Makefile)",
+      "Edit(.gitignore)"
+    ],
+    "defaultMode": "default",
+    "disableBypassPermissionsMode": "disable",
+    "additionalDirectories": [
+      "/media/seanje-lenox-wise/Project/CreativeWorkzStudio_LLC"
+    ]
+  },
+  "enableAllProjectMcpServers": false,
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/seanje-lenox-wise/.claude/hooks/session/start"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write(**)|Edit(**)|Bash(*)|Read(**)|Grep(*)|Glob(**)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/seanje-lenox-wise/.claude/hooks/tool/post-use \"$TOOL_NAME\" \"$TOOL_ARGS\""
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/seanje-lenox-wise/.claude/hooks/tool/pre-use \"$TOOL_NAME\" \"$TOOL_ARGS\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/seanje-lenox-wise/.claude/hooks/session/stop"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/seanje-lenox-wise/.claude/hooks/session/subagent-stop"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/seanje-lenox-wise/.claude/hooks/prompt/submit"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/seanje-lenox-wise/.claude/hooks/session/end"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/seanje-lenox-wise/.claude/hooks/session/notification"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/seanje-lenox-wise/.claude/hooks/session/pre-compact"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "/home/seanje-lenox-wise/.claude/statusline/statusline",
+    "padding": 0
+  },
+  "outputStyle": "Default",
+  "sandbox": {
+    "enabled": false
+  },
+  "alwaysThinkingEnabled": true
+}

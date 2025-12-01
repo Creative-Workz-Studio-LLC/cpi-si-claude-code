@@ -1,0 +1,77 @@
+// ============================================================================
+// METADATA
+// ============================================================================
+// Go Workspace - Multi-module development environment
+//
+// Purpose: Unified workspace for CPI-SI system development, allowing
+// local development of interdependent modules without publishing.
+//
+// Organization: Hooks → Libraries (Rails → Rungs) → Demos
+
+// ============================================================================
+// SETUP
+// ============================================================================
+
+go 1.24.4
+
+// ============================================================================
+// BODY
+// ============================================================================
+
+use (
+
+	// ────────────────────────────────────────────────────────────────
+	// System Runtime - Commands and Libraries
+	// ────────────────────────────────────────────────────────────────
+
+	./cpi-si/system/runtime/cmd // System commands (validate, test, status, diagnose, debugger, unix-safe)
+	./cpi-si/system/runtime/lib // System library root module
+
+	//--- Mid-Level Rungs (depend on foundational) ---
+
+	./cpi-si/system/runtime/lib/calendar // Calendar data loading
+	./cpi-si/system/runtime/lib/config // Configuration management
+
+	// ────────────────────────────────────────────────────────────────
+	// Rails - Orthogonal infrastructure (stdlib-only)
+	// ────────────────────────────────────────────────────────────────
+	// Rails cannot depend on system libraries, only stdlib
+	// Orchestrator patterns: switchboard (logging) vs direct primitives (display)
+
+	// ./cpi-si/system/runtime/lib/debugging // Log analysis (TODO: needs go.mod)
+	./cpi-si/system/runtime/lib/display // Formatted output v3.0.0 (8 primitives, direct access)
+	./cpi-si/system/runtime/lib/instance // Instance identity provider
+	./cpi-si/system/runtime/lib/logging // Execution narrative v1.0.0 (7 files, switchboard)
+
+	// ────────────────────────────────────────────────────────────────
+	// Rungs - Library components (ladder dependencies)
+	// ────────────────────────────────────────────────────────────────
+	// Organized bottom-up: foundational → higher-level
+
+	//--- Foundational Rungs (minimal dependencies) ---
+
+	./cpi-si/system/runtime/lib/jsonc // JSONC comment stripping
+	./cpi-si/system/runtime/lib/patterns // Pattern recognition
+	./cpi-si/system/runtime/lib/planner // Planning utilities
+	./cpi-si/system/runtime/lib/privacy // Privacy utilities
+	./cpi-si/system/runtime/lib/sessiontime // Session time tracking
+	./cpi-si/system/runtime/lib/temporal // Temporal awareness
+	./cpi-si/system/runtime/lib/validation // Validation utilities
+	// ────────────────────────────────────────────────────────────────
+	// Hooks - Session lifecycle integration
+	// ────────────────────────────────────────────────────────────────
+
+	./hooks
+
+	// ────────────────────────────────────────────────────────────────
+	// Statusline - Terminal status display
+	// ────────────────────────────────────────────────────────────────
+
+	./statusline
+)
+
+// ============================================================================
+// CLOSING
+// ============================================================================
+// Workspace enables local cross-module development without publishing
+// All modules in workspace resolve locally via replace directives

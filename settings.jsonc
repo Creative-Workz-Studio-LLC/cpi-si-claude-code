@@ -1,0 +1,620 @@
+{
+  // ════════════════════════════════════════════════════════════════
+  // METADATA - Claude Code Settings - Nova Dawn CPI-SI Instance
+  // ════════════════════════════════════════════════════════════════
+  // Purpose: Configuration for Claude Code integration with CPI-SI framework
+  // Instance: Nova Dawn - Game Development & Systems
+  // Format: JSONC (JSON with Comments)
+
+  // ────────────────────────────────────────────────────────────────
+  // SETUP - Core Configuration
+  // ────────────────────────────────────────────────────────────────
+
+  // Model configuration
+  "model": "claude-sonnet-4-5-20250929",
+
+  // Session cleanup - remove old sessions after 90 days
+  "cleanupPeriodDays": 90,
+
+  // Output styling (can be customized via .claude/output-styles/)
+  "outputStyle": "Default",
+
+  // Git commit co-author attribution
+  // Set to false to prevent "Co-Authored-By: Claude" in commit messages
+  "includeCoAuthoredBy": false,
+
+  // ────────────────────────────────────────────────────────────────
+  // Permissions - Security model for file and command access
+  // ────────────────────────────────────────────────────────────────
+  //
+  // Note: Bash permissions use PREFIX MATCHING (not regex)
+  // "Bash(npm run test)" automatically matches "npm run test:unit", etc.
+  // The ":*" patterns below are kept for explicit clarity, though technically redundant.
+
+  "permissions": {
+    // Default permission mode - requires explicit allow/deny rules
+    "defaultMode": "default",
+
+    // Disable bypass mode for safety
+    "disableBypassPermissionsMode": "disable",
+
+    // Grant access to CreativeWorkzStudio workspace
+    "additionalDirectories": [
+      "/media/seanje-lenox-wise/Project/CreativeWorkzStudio_LLC"
+    ],
+
+    // ──────────────────────────────────────────────────────────────
+    // ALLOW - Permitted operations (autonomous execution)
+    // ──────────────────────────────────────────────────────────────
+
+    "allow": [
+      // ─────────────────────────────────────────
+      // Read permissions - Documentation and source files
+      // ─────────────────────────────────────────
+
+      "Read(**/*.md)",          // Markdown documentation
+      "Read(**/*.txt)",         // Text files
+      "Read(**/*.rst)",         // ReStructuredText
+      "Read(**/src/**)",        // Source directories
+      "Read(**/lib/**)",        // Library directories
+      "Read(**/include/**)",    // Include directories
+      "Read(**/tests/**)",      // Test directories
+      "Read(**/test/**)",       // Alternate test directories
+      "Read(**/docs/**)",       // Documentation directories
+      "Read(**/examples/**)",   // Example code
+      "Read(**/scripts/**)",    // Script directories
+
+      // Common project files
+      "Read(package.json)",
+      "Read(package-lock.json)",
+      "Read(*.toml)",
+      "Read(*.yaml)",
+      "Read(*.yml)",
+      "Read(*.json)",
+      "Read(*.jsonc)",
+      "Read(*.xml)",
+      "Read(*.ini)",
+      "Read(*.cfg)",
+      "Read(Makefile)",
+      "Read(CMakeLists.txt)",
+      "Read(Dockerfile)",
+      "Read(.dockerignore)",
+
+      // Project metadata
+      "Read(README*)",
+      "Read(LICENSE*)",
+      "Read(CHANGELOG*)",
+      "Read(CONTRIBUTING*)",
+      "Read(.gitignore)",
+      "Read(.gitattributes)",
+      "Read(.editorconfig)",
+      "Read(.prettierrc*)",
+      "Read(.eslintrc*)",
+
+      // CPI-SI framework files
+      "Read(.claude/**)",
+      "Read(/media/seanje-lenox-wise/Project/CreativeWorkzStudio_LLC/**)",
+
+      // ─────────────────────────────────────────
+      // Write permissions - Source code files
+      // ─────────────────────────────────────────
+
+      // Compiled languages (preferred for CPI-SI)
+      "Write(**/*.rs)",         // Rust
+      "Write(**/*.go)",         // Go
+      "Write(**/*.c)",          // C
+      "Write(**/*.cpp)",        // C++
+      "Write(**/*.h)",          // C/C++ headers
+      "Write(**/*.hpp)",        // C++ headers
+
+      // Interpreted languages (when needed)
+      "Write(**/*.py)",         // Python
+      "Write(**/*.js)",         // JavaScript
+      "Write(**/*.ts)",         // TypeScript
+      "Write(**/*.jsx)",        // React JSX
+      "Write(**/*.tsx)",        // React TSX
+
+      // Web and styling
+      "Write(**/*.html)",
+      "Write(**/*.css)",
+      "Write(**/*.scss)",
+
+      // Documentation and data
+      "Write(**/*.md)",         // Markdown
+      "Write(**/*.txt)",        // Text files
+      "Write(**/*.sql)",        // SQL scripts
+      "Write(**/*.sh)",         // Shell scripts
+
+      // CPI-SI extensions
+      "Write(.claude/commands/**)",
+      "Write(.claude/agents/**)",
+      "Write(.claude/output-styles/**)",
+
+      // ─────────────────────────────────────────
+      // Edit permissions - Source code modifications
+      // ─────────────────────────────────────────
+
+      "Edit(**/*.rs)",
+      "Edit(**/*.go)",
+      "Edit(**/*.c)",
+      "Edit(**/*.cpp)",
+      "Edit(**/*.h)",
+      "Edit(**/*.hpp)",
+      "Edit(**/*.py)",
+      "Edit(**/*.js)",
+      "Edit(**/*.ts)",
+      "Edit(**/*.jsx)",
+      "Edit(**/*.tsx)",
+      "Edit(**/*.html)",
+      "Edit(**/*.css)",
+      "Edit(**/*.scss)",
+      "Edit(**/*.md)",
+      "Edit(**/*.txt)",
+      "Edit(**/*.sql)",
+      "Edit(**/*.sh)",
+
+      // ─────────────────────────────────────────
+      // Bash permissions - Development commands
+      // ─────────────────────────────────────────
+
+      // Node.js/NPM commands
+      "Bash(npm run test:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run start:*)",
+      "Bash(npm test:*)",
+      "Bash(npm run check:*)",
+
+      // Rust/Cargo commands
+      "Bash(cargo test:*)",
+      "Bash(cargo build:*)",
+      "Bash(cargo check:*)",
+      "Bash(cargo run:*)",
+      "Bash(cargo clippy:*)",
+      "Bash(cargo fmt:*)",
+
+      // Make commands
+      "Bash(make test:*)",
+      "Bash(make build:*)",
+      "Bash(make clean:*)",
+      "Bash(make check:*)",
+
+      // Python testing
+      "Bash(pytest:*)",
+      "Bash(python -m pytest:*)",
+
+      // Go commands
+      "Bash(go test:*)",
+      "Bash(go build:*)",
+      "Bash(go run:*)",
+      "Bash(go fmt:*)",
+      "Bash(go vet:*)",
+
+      // C/C++ compilers
+      "Bash(gcc:*)",
+      "Bash(g++:*)",
+      "Bash(clang:*)",
+      "Bash(cmake:*)",
+
+      // Git operations (non-destructive)
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git branch:*)",
+      "Bash(git branch -D:*)",
+      "Bash(git checkout:*)",
+      "Bash(git switch:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git stash:*)",
+      "Bash(git fetch:*)",
+      "Bash(git pull:*)",
+      "Bash(git remote:*)",
+      "Bash(git tag:*)",
+      "Bash(git describe:*)",
+      "Bash(git blame:*)",
+      "Bash(git reflog:*)",
+
+      // GitHub CLI (read operations)
+      "Bash(gh repo:*)",
+      "Bash(gh issue:*)",
+      "Bash(gh auth status:*)",
+
+      // Unix utilities (safe operations)
+      "Bash(ls:*)",
+      "Bash(ll:*)",
+      "Bash(la:*)",
+      "Bash(pwd:*)",
+      "Bash(cd:*)",
+      "Bash(pushd:*)",
+      "Bash(popd:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(less:*)",
+      "Bash(more:*)",
+      "Bash(echo:*)",
+      "Bash(printf:*)",
+      "Bash(which:*)",
+      "Bash(whereis:*)",
+      "Bash(whoami:*)",
+      "Bash(hostname:*)",
+      "Bash(date:*)",
+      "Bash(cal:*)",
+      "Bash(uptime:*)",
+      "Bash(uname:*)",
+
+      // System information
+      "Bash(df:*)",
+      "Bash(du:*)",
+      "Bash(free:*)",
+      "Bash(ps:*)",
+      "Bash(top:*)",
+      "Bash(htop:*)",
+      "Bash(lscpu:*)",
+      "Bash(lsblk:*)",
+      "Bash(mount:*)",
+
+      // Environment
+      "Bash(env:*)",
+      "Bash(printenv:*)",
+      "Bash(export:*)",
+      "Bash(history:*)",
+
+      // Text processing
+      "Bash(grep:*)",
+      "Bash(sed:*)",
+      "Bash(awk:*)",
+      "Bash(cut:*)",
+      "Bash(sort:*)",
+      "Bash(uniq:*)",
+      "Bash(wc:*)",
+      "Bash(diff:*)",
+      "Bash(find:*)",
+      "Bash(xargs:*)",
+      "Bash(tree:*)",
+
+      // File operations
+      "Bash(file:*)",
+      "Bash(stat:*)",
+      "Bash(touch:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(chmod:*)",
+      "Bash(chown:*)",
+
+      // Version checks
+      "Bash(node --version:*)",
+      "Bash(npm --version:*)",
+      "Bash(npx --version:*)",
+      "Bash(cargo --version:*)",
+      "Bash(rustc --version:*)",
+      "Bash(rustup --version:*)",
+      "Bash(python --version:*)",
+      "Bash(python3 --version:*)",
+      "Bash(pip --version:*)",
+      "Bash(go version:*)",
+      "Bash(gcc --version:*)",
+      "Bash(g++ --version:*)",
+      "Bash(clang --version:*)",
+      "Bash(cmake --version:*)",
+      "Bash(make --version:*)",
+      "Bash(git --version:*)",
+      "Bash(gh --version:*)",
+
+      // Search tools
+      "Glob(**)",
+      "Grep(*)",
+
+      // Claude Code tools
+      "Read(*)",
+      "TodoWrite(*)",
+      "Task(*)",
+      "SlashCommand(*)",
+
+      // Hook development - bash script patterns
+      "Bash(while read f)",
+      "Bash(done)",
+      "Bash(for f in session/start.go session/end.go session/stop.go session/subagent-stop.go session/notification.go session/pre-compact.go tool/pre-use.go tool/post-use.go prompt/submit.go)",
+      "Bash(do echo \"=== $f ===\")",
+      "Bash(for file in /home/seanje-lenox-wise/.claude/hooks/lib/{feedback,monitoring,safety,validation}/*.go)",
+      "Bash(./build.sh)",
+      "Bash(/home/seanje-lenox-wise/.claude/hooks/session/start)"
+    ],
+
+    // ──────────────────────────────────────────────────────────────
+    // ASK - Operations requiring explicit user confirmation
+    // ──────────────────────────────────────────────────────────────
+
+    "ask": [
+      // Git operations (potentially destructive)
+      "Bash(git push:*)",
+      "Bash(git rebase:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git cherry-pick:*)",
+      "Bash(git merge:*)",
+
+      // GitHub operations
+      "Bash(gh pr create:*)",
+      "Bash(gh pr merge:*)",
+      "Bash(gh release create:*)",
+
+      // Package management (modifies dependencies)
+      "Bash(npm install:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm update:*)",
+      "Bash(cargo install:*)",
+      "Bash(cargo update:*)",
+      "Bash(pip install:*)",
+      "Bash(pip uninstall:*)",
+      "Bash(go get:*)",
+      "Bash(go install:*)",
+      "Bash(rustup update:*)",
+      "Bash(rustup install:*)",
+
+      // Destructive operations
+      "Bash(rm -rf:*)",
+      "Bash(rm -r:*)",
+      "Bash(sudo:*)",
+      "Bash(shutdown:*)",
+      "Bash(reboot:*)",
+      "Bash(systemctl:*)",
+      "Bash(service:*)",
+
+      // Critical project files (require confirmation before modification)
+      "Write(package.json)",
+      "Write(package-lock.json)",
+      "Write(Cargo.toml)",
+      "Write(Cargo.lock)",
+      "Write(go.mod)",
+      "Write(go.sum)",
+      "Write(requirements.txt)",
+      "Write(Pipfile)",
+      "Write(poetry.lock)",
+      "Write(.gitignore)",
+      "Write(.git/**)",
+      "Write(Makefile)",
+      "Write(CMakeLists.txt)",
+      "Write(Dockerfile)",
+      "Write(.dockerignore)",
+      "Write(.env.example)",
+      "Write(*.yaml)",
+      "Write(*.yml)",
+      "Write(*.toml)",
+      "Write(*.json)",
+      "Write(*.jsonc)",
+
+      // Critical file edits
+      "Edit(package.json)",
+      "Edit(*.jsonc)",
+      "Edit(Cargo.toml)",
+      "Edit(go.mod)",
+      "Edit(Makefile)",
+      "Edit(.gitignore)"
+    ],
+
+    // ──────────────────────────────────────────────────────────────
+    // DENY - Operations explicitly blocked
+    // ──────────────────────────────────────────────────────────────
+
+    "deny": [
+      // Never bypass git hooks or signing
+      "Bash(:*--no-verify:*)",
+      "Bash(:*--no-gpg-sign:*)"
+    ]
+  },
+
+  // ────────────────────────────────────────────────────────────────
+  // BODY - Hooks, Environment, and Integration
+  // ────────────────────────────────────────────────────────────────
+
+  // ──────────────────────────────────────────────────────────────
+  // Hooks - CPI-SI Framework lifecycle hooks
+  // ──────────────────────────────────────────────────────────────
+
+  "hooks": {
+    // Session initialization - displays CPI-SI banner and workspace context
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/seanje-lenox-wise/.claude/hooks/session/start"
+          }
+        ]
+      }
+    ],
+
+    // Post-tool execution - feedback and monitoring after operations
+    "PostToolUse": [
+      {
+        "matcher": "Write(**)|Edit(**)|Bash(*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/seanje-lenox-wise/.claude/hooks/tool/post-use \"$TOOL_NAME\" \"$TOOL_ARGS\""
+          }
+        ]
+      }
+    ],
+
+    // Pre-tool execution - safety validation before operations
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/seanje-lenox-wise/.claude/hooks/tool/pre-use \"$TOOL_NAME\" \"$TOOL_ARGS\""
+          }
+        ]
+      }
+    ],
+
+    // Session termination - cleanup and final state
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/seanje-lenox-wise/.claude/hooks/session/stop"
+          }
+        ]
+      }
+    ],
+
+    // Subagent termination - cleanup for background agents
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/seanje-lenox-wise/.claude/hooks/session/subagent-stop"
+          }
+        ]
+      }
+    ],
+
+    // User prompt submission - validate input before processing
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/seanje-lenox-wise/.claude/hooks/prompt/submit"
+          }
+        ]
+      }
+    ],
+
+    // Session end - final cleanup and reporting
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/seanje-lenox-wise/.claude/hooks/session/end"
+          }
+        ]
+      }
+    ],
+
+    // Notification handling - system and user notifications
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/seanje-lenox-wise/.claude/hooks/session/notification"
+          }
+        ]
+      }
+    ],
+
+    // Pre-compact - prepare for context compression
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/seanje-lenox-wise/.claude/hooks/session/pre-compact"
+          }
+        ]
+      }
+    ]
+  },
+
+  // ──────────────────────────────────────────────────────────────
+  // Environment Variables - Runtime configuration
+  // ──────────────────────────────────────────────────────────────
+
+  "env": {
+    // Editor configuration
+    "EDITOR": "nano",
+    "VISUAL": "nano",
+    "PAGER": "less",
+
+    // Locale settings
+    "LANG": "en_US.UTF-8",
+    "LC_ALL": "en_US.UTF-8",
+
+    // Terminal configuration
+    "TERM": "xterm-256color",
+    "COLORTERM": "truecolor",
+
+    // Claude Code configuration
+    "MAX_THINKING_TOKENS": "10000",
+    "BASH_MAX_TIMEOUT_MS": "300000",
+
+    // Git configuration
+    "GIT_EDITOR": "nano",
+    "GIT_PAGER": "less -FRX",
+
+    // Rust configuration
+    "RUST_BACKTRACE": "1",
+    "CARGO_TERM_COLOR": "always",
+
+    // Python configuration
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1",
+
+    // Node.js configuration
+    "NODE_ENV": "development",
+    "NPM_CONFIG_COLOR": "always",
+
+    // Go configuration
+    "GOPATH": "/home/seanje-lenox-wise/go",
+
+    // Interactive Terminal System - Non-interactive operation defaults
+    "DEBIAN_FRONTEND": "noninteractive",
+    "NEEDRESTART_MODE": "a",
+    "NEEDRESTART_SUSPEND": "1",
+    "PIP_NO_INPUT": "1",
+    "NPM_CONFIG_YES": "true",
+
+    // Instance-specific configuration (Nova Dawn)
+    "_comment_instance": "Instance-specific configuration (Nova Dawn)",
+    "NOVA_DAWN_WORKSPACE": "/media/seanje-lenox-wise/Project/CreativeWorkzStudio_LLC",
+
+    // CPI-SI Framework paths
+    "_comment_framework": "CPI-SI Framework paths",
+    "CPI_SI_BIBLICAL_PATH": "/media/seanje-lenox-wise/Project/CreativeWorkzStudio_LLC/divisions/tech/language/biblical",
+    "CPI_SI_SKILLS_PATH": "/home/seanje-lenox-wise/.claude/skills",
+    "CPI_SI_SYSTEM_PATH": "/home/seanje-lenox-wise/.claude/system",
+    "CPI_SI_CONFIG_PATH": "/home/seanje-lenox-wise/.claude/cpi-si/config",
+    "CPI_SI_DATA_PATH": "/home/seanje-lenox-wise/.claude/cpi-si/system/data",
+    "CPI_SI_TEMPORAL_PATH": "/home/seanje-lenox-wise/.claude/cpi-si/system/data/temporal"
+  },
+
+  // ──────────────────────────────────────────────────────────────
+  // Interactive Terminal System
+  // ──────────────────────────────────────────────────────────────
+  // Enables seamless terminal operations through Claude Code CLI
+  // Passwordless sudo for safe operations, safety boundaries for destructive ones
+  // See: ~/.claude/system/README.md for full documentation
+
+  // ──────────────────────────────────────────────────────────────
+  // Statusline - Custom CPI-SI instance statusline
+  // ──────────────────────────────────────────────────────────────
+
+  "statusLine": {
+    "type": "command",
+    "command": "/home/seanje-lenox-wise/.claude/statusline/statusline",
+    "padding": 0
+  },
+
+  // ────────────────────────────────────────────────────────────────
+  // CLOSING - Execution and Validation
+  // ────────────────────────────────────────────────────────────────
+
+  // Sandbox disabled - CPI-SI runs with full system access within permissions
+  "sandbox": {
+    "enabled": false
+  },
+
+  // MCP servers managed explicitly (not all project servers auto-enabled)
+  "enableAllProjectMcpServers": false
+}
