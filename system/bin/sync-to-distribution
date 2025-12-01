@@ -1,0 +1,223 @@
+#!/bin/bash
+# ============================================================================
+# METADATA
+# ============================================================================
+# Biblical:     "In the beginning God created the heaven and the earth." - Gen 1:1
+# CPI-SI:       System synchronization tool for distribution
+# Author:       Nova Dawn (CPI-SI) with Seanje Lenox-Wise
+# Created:      2025-12-01
+# Purpose:      Sync CWS claude-global to distribution repository
+# Blocking:     No
+# Usage:        ./sync-to-distribution [--tag VERSION] [--dry-run]
+# Dependencies: git, rsync
+# Health:       N/A (utility script)
+# ============================================================================
+
+# ============================================================================
+# SETUP
+# ============================================================================
+set -e
+
+# Configuration
+CWS_GLOBAL="/media/seanje-lenox-wise/Project/CreativeWorkzStudio_LLC/divisions/tech/cpi-si/claude-global"
+DIST_REPO="https://github.com/Creative-Workz-Studio-LLC/cpi-si-claude-code.git"
+TEMP_DIR="/tmp/cpi-dist-sync"
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Options
+DRY_RUN=false
+TAG_VERSION=""
+
+# ============================================================================
+# BODY
+# ============================================================================
+
+usage() {
+    echo "Usage: $0 [OPTIONS]"
+    echo ""
+    echo "Sync CWS claude-global to distribution repository"
+    echo ""
+    echo "Options:"
+    echo "  --tag VERSION   Create a git tag with the specified version (e.g., v0.2.0)"
+    echo "  --dry-run       Show what would be synced without making changes"
+    echo "  --help          Show this help message"
+    echo ""
+    echo "Examples:"
+    echo "  $0                     # Sync and commit"
+    echo "  $0 --tag v0.2.0        # Sync, commit, and tag"
+    echo "  $0 --dry-run           # Preview changes only"
+}
+
+log_info() {
+    echo -e "${BLUE}[INFO]${NC} $1"
+}
+
+log_success() {
+    echo -e "${GREEN}[SUCCESS]${NC} $1"
+}
+
+log_warn() {
+    echo -e "${YELLOW}[WARN]${NC} $1"
+}
+
+log_error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+}
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --tag)
+            TAG_VERSION="$2"
+            shift 2
+            ;;
+        --dry-run)
+            DRY_RUN=true
+            shift
+            ;;
+        --help)
+            usage
+            exit 0
+            ;;
+        *)
+            log_error "Unknown option: $1"
+            usage
+            exit 1
+            ;;
+    esac
+done
+
+# Verify CWS exists
+if [ ! -d "$CWS_GLOBAL" ]; then
+    log_error "CWS claude-global not found at $CWS_GLOBAL"
+    exit 1
+fi
+
+log_info "Starting sync from CWS to distribution..."
+log_info "Source: $CWS_GLOBAL"
+
+# Clean and prepare temp directory
+rm -rf "$TEMP_DIR"
+mkdir -p "$TEMP_DIR"
+
+# Clone distribution repo
+log_info "Cloning distribution repository..."
+git clone --quiet "$DIST_REPO" "$TEMP_DIR"
+cd "$TEMP_DIR"
+
+# Items to sync from CWS
+# Note: We use rsync with specific includes/excludes for precise control
+SYNC_ITEMS=(
+    "CLAUDE.md"
+    "README.md"
+    "settings.json"
+    "settings.jsonc"
+    "go.work"
+    ".vscode"
+    "agents"
+    "commands"
+    "config"
+    "custom-gpt"
+    "docs"
+    "hooks"
+    "output-styles"
+    "skills"
+    "statusline"
+    "system"
+)
+
+# Items to EXCLUDE from sync (stay local to CWS or are build artifacts)
+# Using array for proper handling in rsync command
+EXCLUDE_ARGS=(
+    "--exclude=.git"
+    "--exclude=*.o"
+    "--exclude=*.exe"
+    "--exclude=temp"
+    "--exclude=__pycache__"
+    "--exclude=*.pyc"
+)
+
+if $DRY_RUN; then
+    log_warn "DRY RUN - showing what would be synced..."
+
+    for item in "${SYNC_ITEMS[@]}"; do
+        if [ -e "$CWS_GLOBAL/$item" ]; then
+            echo "  Would sync: $item"
+        else
+            echo "  Skipping (not found): $item"
+        fi
+    done
+
+    log_info "Dry run complete. No changes made."
+    exit 0
+fi
+
+# Sync each item
+log_info "Syncing files..."
+for item in "${SYNC_ITEMS[@]}"; do
+    if [ -e "$CWS_GLOBAL/$item" ]; then
+        if [ -d "$CWS_GLOBAL/$item" ]; then
+            # Directory - use rsync for better control
+            rsync -av --delete "${EXCLUDE_ARGS[@]}" "$CWS_GLOBAL/$item/" "$TEMP_DIR/$item/" > /dev/null 2>&1
+            log_info "  Synced directory: $item"
+        else
+            # File - simple copy
+            cp "$CWS_GLOBAL/$item" "$TEMP_DIR/$item"
+            log_info "  Synced file: $item"
+        fi
+    else
+        log_warn "  Skipping (not found): $item"
+    fi
+done
+
+# Check for changes
+if git diff --quiet && git diff --cached --quiet; then
+    log_info "No changes detected. Distribution is up to date."
+    rm -rf "$TEMP_DIR"
+    exit 0
+fi
+
+# Show what changed
+log_info "Changes detected:"
+git status --short
+
+# Stage all changes
+git add -A
+
+# Commit
+COMMIT_MSG="[CPSI] SYNC: Update from CWS claude-global $(date +%Y-%m-%d)"
+git commit -m "$COMMIT_MSG"
+log_success "Committed changes"
+
+# Tag if requested
+if [ -n "$TAG_VERSION" ]; then
+    git tag -a "$TAG_VERSION" -m "Release $TAG_VERSION"
+    log_success "Created tag: $TAG_VERSION"
+fi
+
+# Push
+log_info "Pushing to remote..."
+git push origin main
+if [ -n "$TAG_VERSION" ]; then
+    git push origin "$TAG_VERSION"
+fi
+log_success "Pushed to remote"
+
+# Cleanup
+rm -rf "$TEMP_DIR"
+
+# ============================================================================
+# CLOSING
+# ============================================================================
+log_success "Sync complete!"
+if [ -n "$TAG_VERSION" ]; then
+    echo ""
+    echo "Release $TAG_VERSION is now available at:"
+    echo "  https://github.com/Creative-Workz-Studio-LLC/cpi-si-claude-code/releases/tag/$TAG_VERSION"
+fi
