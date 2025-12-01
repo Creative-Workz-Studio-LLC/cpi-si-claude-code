@@ -1,0 +1,693 @@
+# TEMPLATE: This file is a template - copy and modify before using
+# ═══════════════════════════════════════════════════════════════════════════
+# TEMPLATE: EditorConfig File (4-Block Structure)
+# Key: CODE-EDITOR-001
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# DEPENDENCY CLASSIFICATION: PURE (self-contained - no external dependencies)
+#   - EditorConfig files are self-contained formatting definitions
+#
+# This is a TEMPLATE file - copy and modify for new projects.
+# Replace all [bracketed] placeholders with actual content.
+# Rename to .editorconfig (remove CODE-EDITOR-001-EDITOR- prefix).
+# Remove the "TEMPLATE" comment line when ready to use.
+#
+# Derived from: Kingdom Technology standards (canonical template)
+# See: standards/code/4-block/ for complete documentation
+# See: https://editorconfig.org for specification
+#
+# ═══════════════════════════════════════════════════════════════════════════
+
+# =============================================================================
+# METADATA
+# =============================================================================
+#
+# Package:     [organization/project-name]
+# File:        .editorconfig
+# Key:         [PROJECT-EDITOR-###] (EditorConfig configuration)
+#
+# -----------------------------------------------------------------------------
+# CORE IDENTITY (Required)
+# -----------------------------------------------------------------------------
+#
+# # Biblical Foundation
+#
+# Scripture: "Let all things be done decently and in order."
+# - 1 Corinthians 14:40
+#
+# Principle: Consistent formatting across all editors ensures code looks the
+# same regardless of who writes it or what tool they use. EditorConfig
+# establishes "decency and order" at the foundational level - before code
+# is even written, the environment is configured for consistency.
+#
+# Anchor: "For God is not the author of confusion, but of peace."
+# - 1 Corinthians 14:33
+#
+# # CPI-SI Identity
+#
+# Component Type: Rails (editor infrastructure)
+#
+# Role: Cross-editor formatting consistency enforcement
+#
+# Paradigm: CPI-SI framework component - editor configuration
+#
+# # Authorship & Lineage
+#
+#   Architect: [Who designed these formatting standards]
+#   Implementation: [Who maintains this file]
+#   Created: [YYYY-MM-DD]
+#   Version: [MAJOR.MINOR.PATCH]
+#   Modified: [YYYY-MM-DD - what changed]
+#
+# Version History:
+#
+#   [X.Y.Z] ([YYYY-MM-DD]) - [Brief description of changes]
+#
+# # Purpose & Function
+#
+# Purpose: Define and maintain consistent coding styles across editors/IDEs
+#
+# Core Design: Universal formatting rules that all editors respect
+#
+# Key Features:
+#
+#   - Indent style (spaces vs tabs) and size
+#   - Line ending normalization (LF for Linux-first)
+#   - Character encoding (UTF-8)
+#   - Trailing whitespace handling
+#   - Final newline enforcement
+#
+# Philosophy: Consistency reduces friction and enables excellent work
+#
+# -----------------------------------------------------------------------------
+# INTERFACE (Expected)
+# -----------------------------------------------------------------------------
+#
+# # Dependencies
+#
+# What This Needs:
+#
+#   - EditorConfig plugin: Native in VS Code, JetBrains; plugin for Vim, Emacs
+#
+# What Uses This:
+#
+#   - All editors/IDEs with EditorConfig support
+#   - All contributors to the project
+#
+# Integration Points:
+#
+#   - Prettier: .prettierrc (may overlap - ensure consistency)
+#   - ESLint: .eslintrc (for JS/TS specific rules)
+#   - Language formatters: gofmt, rustfmt, black
+#
+# # Usage & Integration
+#
+# Verification:
+#
+#   editorconfig [filename]              # Check settings for a file
+#   ec -config .editorconfig             # Validate with editorconfig-checker
+#
+# Configuration Hierarchy:
+#
+#   EditorConfig searches upward from file to root=true
+#
+# -----------------------------------------------------------------------------
+# OPERATIONAL (Contextual)
+# -----------------------------------------------------------------------------
+#
+# # Blocking Status
+#
+# [OMIT: Configuration file - no runtime blocking, editor reads on file open]
+#
+# # Health Scoring
+#
+# Configuration Impact: Inconsistent formatting creates merge conflicts and
+# reduces code readability
+#
+# Validation Behavior:
+#   - Invalid property: Editor ignores silently
+#   - Missing section: Falls back to defaults or parent config
+#   - Unsupported property: Depends on editor/plugin
+#
+# -----------------------------------------------------------------------------
+# METADATA Omission Guide
+# -----------------------------------------------------------------------------
+#
+# Tier 1 (CORE IDENTITY): Never omit - every file needs these.
+#
+# Tier 2 (INTERFACE): May omit with [OMIT: reason] notation.
+#   - Dependencies: Required - documents EditorConfig plugin requirement
+#   - Usage & Integration: Required - shows verification commands
+#
+# Tier 3 (OPERATIONAL): Include when applicable to file type.
+#   - Blocking Status: [OMIT: Configuration file - editor reads on file open]
+#   - Health Scoring: Include - documents formatting consistency impact
+#
+# Unlike SETUP (all sections required), METADATA omission signals component characteristics.
+#
+# =============================================================================
+# END METADATA
+# =============================================================================
+
+# =============================================================================
+# SETUP
+# =============================================================================
+#
+# For SETUP structure explanation, see: standards/code/4-block/CWS-STD-006-CODE-setup-block.md
+#
+# -----------------------------------------------------------------------------
+# SETUP Sections Overview
+# -----------------------------------------------------------------------------
+#
+# 1. FILE IDENTITY (Dependencies)
+#    Purpose: Establish what consumes this EditorConfig and how it's loaded
+#    Subsections: Consumer → Loader → Supported Editors
+#
+# 2. CONSTANTS
+#    [Reserved: EditorConfig files ARE constants - formatting rules in BODY]
+#
+# 3. VARIABLES
+#    [Reserved: EditorConfig files don't hold mutable state]
+#
+# 4. RELATED FILES (Types)
+#    Purpose: Document related formatting tools
+#    Subsections: Formatters → Linters → Language Tools
+#
+# 5. TYPE BEHAVIORS
+#    [Reserved: EditorConfig files have no executable behaviors]
+#
+# 6. USAGE/BEHAVIOR (Rails Infrastructure)
+#    Purpose: How EditorConfig rules are evaluated
+#    Subsections: Configuration Hierarchy → Override Pattern → Verification
+#
+# Section order: File Identity → [Reserved] → [Reserved] → Related Files → [Reserved] → Usage/Behavior
+# This flows: what uses this → (rules ARE constants) → (no state) → related files → (no behaviors) → how it works
+#
+# Universal mapping (see standards for cross-language patterns):
+#   File Identity ≈ Dependencies (who consumes this)
+#   Constants ≈ Constants [Reserved: formatting rules ARE constants]
+#   Variables ≈ Variables [Reserved: no mutable state]
+#   Related Files ≈ Types (what files relate to this)
+#   Type Behaviors ≈ Type Methods [Reserved: no executable behaviors]
+#   Usage/Behavior ≈ Package-Level State (rule evaluation)
+#
+# -----------------------------------------------------------------------------
+# File Identity (Dependencies)
+# -----------------------------------------------------------------------------
+#
+# Key: CODE-EDITOR-001 (unique identifier for this EditorConfig)
+# Consumer: Editors/IDEs with EditorConfig support
+# Loader: EditorConfig plugin reads from root up to file location
+#
+# Supported Editors:
+#   - Native support: GitHub, GitLab, VS Code, JetBrains IDEs
+#   - Plugin required: Vim, Emacs, Sublime Text, Atom
+#   - See: https://editorconfig.org/#pre-installed
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Constants
+# -----------------------------------------------------------------------------
+#
+# [Reserved: EditorConfig files ARE constants - they define static formatting
+#  rules. All settings in BODY are immutable definitions that editors apply.
+#  The file itself is the constant definition for formatting standards.]
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Variables
+# -----------------------------------------------------------------------------
+#
+# [Reserved: EditorConfig files don't hold mutable runtime state.
+#  Settings are applied at file open/save time based on file type,
+#  but the rules themselves are static.]
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Related Files (Types)
+# -----------------------------------------------------------------------------
+#
+# Formatters:
+#   - Prettier: .prettierrc (may overlap - ensure consistency)
+#   - Language formatters: gofmt, rustfmt, black
+#
+# Linters:
+#   - ESLint: .eslintrc (for JS/TS specific rules)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Type Behaviors
+# -----------------------------------------------------------------------------
+#
+# [Reserved: EditorConfig files have no executable behaviors.
+#  The file is declarative rules - editors read and apply them
+#  based on their EditorConfig support.]
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Usage/Behavior (Rails Infrastructure)
+# -----------------------------------------------------------------------------
+#
+# Configuration Hierarchy:
+#   - EditorConfig searches upward from file to root=true
+#   - Closer configs override farther configs
+#   - Properties are applied per-file based on glob patterns
+#
+# Verification Commands:
+#   editorconfig [filename]              # Check settings for a file
+#   ec -config .editorconfig             # Validate with editorconfig-checker
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# SETUP Omission Guide
+# -----------------------------------------------------------------------------
+#
+# Unlike METADATA (where sections can be omitted with [OMIT: reason]),
+# ALL six SETUP sections must be present for structural alignment.
+#
+# If a section has no content for this file:
+#   - Keep the section header
+#   - Add [Reserved: reason] comment explaining why empty
+#   - This maintains the 6-section structure across all templates
+#
+# EditorConfig-specific guidance:
+#   - File Identity: Always required (key, consumer, loader, supported editors)
+#   - Constants: [Reserved: EditorConfig rules ARE constants]
+#   - Variables: [Reserved: EditorConfig files don't hold state]
+#   - Related Files: Required - documents Prettier, linters, formatters
+#   - Type Behaviors: [Reserved: No executable behaviors]
+#   - Usage/Behavior: Required - shows hierarchy and verification
+#
+# The goal is structural consistency - every CONFIG template has the same
+# 6-section SETUP structure, making navigation and understanding predictable.
+# =============================================================================
+
+# =============================================================================
+# END SETUP
+# =============================================================================
+
+# =============================================================================
+# BODY
+# =============================================================================
+#
+# For BODY structure explanation, see: standards/code/4-block/CWS-STD-007-CODE-body-block.md
+#
+# -----------------------------------------------------------------------------
+# BODY Sections Overview
+# -----------------------------------------------------------------------------
+#
+# 1. CONFIGURATION STRUCTURE MAP (Internal Organization)
+#    Purpose: Document the organization of formatting rules
+#    Subsections: Default → Language-specific → Project overrides
+#
+# 2. HELPERS/UTILITIES
+#    [Reserved: Declarative config - EditorConfig has no helper functions]
+#
+# 3. CONFIGURATION CONTENT (Core Data)
+#    Purpose: The actual formatting rules organized by file type
+#
+# 4. ERROR HANDLING
+#    [Reserved: Declarative config - editors ignore unknown properties]
+#
+# 5. PUBLIC INTERFACE
+#    [Reserved: Declarative config - properties ARE the interface]
+#
+# -----------------------------------------------------------------------------
+# 1. Configuration Structure Map (Internal Organization)
+# -----------------------------------------------------------------------------
+#
+# Rule Organization:
+#   - Root marker (stop searching in parent directories)
+#   - Default Settings (apply to ALL files)
+#   - Language-specific (Go, Web, Python, Rust, C/C++, etc.)
+#   - Configuration files (YAML, TOML, INI)
+#   - Project-specific overrides (at bottom)
+#
+# -----------------------------------------------------------------------------
+# 2. Helpers/Utilities
+# -----------------------------------------------------------------------------
+#
+# [Reserved: EditorConfig files are declarative rules.
+#  No helper functions - editors read and apply settings.]
+#
+# -----------------------------------------------------------------------------
+# 3. Configuration Content (Core Data)
+# -----------------------------------------------------------------------------
+
+# Top-most EditorConfig file - stop searching in parent directories
+root = true
+
+# -----------------------------------------------------------------------------
+# Default Settings - Apply to ALL files unless overridden
+# -----------------------------------------------------------------------------
+# Kingdom Technology standard: Linux-first, UTF-8, spaces, trim whitespace
+
+[*]
+# Character encoding - UTF-8 is universal standard
+charset = utf-8
+
+# Line endings - LF (Unix) for cross-platform consistency
+# Git will handle conversion on Windows if configured
+end_of_line = lf
+
+# Indentation - spaces for universal rendering
+indent_style = space
+indent_size = 4
+
+# Ensure files end with newline (POSIX standard)
+insert_final_newline = true
+
+# Remove trailing whitespace (prevents noise in diffs)
+trim_trailing_whitespace = true
+
+# Maximum line length (soft guide, not enforced by EditorConfig)
+max_line_length = 100
+
+# -----------------------------------------------------------------------------
+# Go Files - Follow Go conventions
+# -----------------------------------------------------------------------------
+# Go uses tabs by convention (gofmt enforces this)
+
+[*.go]
+indent_style = tab
+indent_size = 4
+
+# -----------------------------------------------------------------------------
+# Web Files - JavaScript, TypeScript, HTML, CSS, JSON
+# -----------------------------------------------------------------------------
+# 2-space indentation is web standard
+
+[*.{js,jsx,ts,tsx,html,css,scss,less,vue,svelte}]
+indent_size = 2
+
+[*.json]
+indent_size = 2
+
+[*.{yaml,yml}]
+indent_size = 2
+
+# -----------------------------------------------------------------------------
+# Makefiles - MUST use tabs (Make syntax requirement)
+# -----------------------------------------------------------------------------
+
+[Makefile]
+indent_style = tab
+
+[*.mk]
+indent_style = tab
+
+# -----------------------------------------------------------------------------
+# Markdown - Allow trailing whitespace for line breaks
+# -----------------------------------------------------------------------------
+# Two trailing spaces = <br> in Markdown
+
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = off
+
+# -----------------------------------------------------------------------------
+# Shell Scripts
+# -----------------------------------------------------------------------------
+
+[*.sh]
+indent_size = 2
+
+[*.bash]
+indent_size = 2
+
+# -----------------------------------------------------------------------------
+# Python - PEP 8 standard
+# -----------------------------------------------------------------------------
+
+[*.py]
+indent_size = 4
+
+# -----------------------------------------------------------------------------
+# Rust - rustfmt conventions
+# -----------------------------------------------------------------------------
+
+[*.rs]
+indent_size = 4
+
+# -----------------------------------------------------------------------------
+# C/C++ - Compiler project conventions
+# -----------------------------------------------------------------------------
+
+[*.{c,h,cpp,hpp,cc,hh}]
+indent_size = 4
+
+# -----------------------------------------------------------------------------
+# Assembly
+# -----------------------------------------------------------------------------
+
+[*.{s,S,asm}]
+indent_style = tab
+indent_size = 8
+
+# -----------------------------------------------------------------------------
+# Configuration Files
+# -----------------------------------------------------------------------------
+
+[*.toml]
+indent_size = 2
+
+[*.ini]
+indent_size = 2
+
+[*.cfg]
+indent_size = 2
+
+# EditorConfig itself
+[.editorconfig]
+indent_size = 2
+
+# -----------------------------------------------------------------------------
+# Documentation
+# -----------------------------------------------------------------------------
+
+[*.{txt,rst}]
+indent_size = 2
+
+# -----------------------------------------------------------------------------
+# Project-Specific Overrides
+# -----------------------------------------------------------------------------
+# [Add project-specific file patterns and settings below]
+
+# [Example: Vendor files - don't modify formatting]
+# [vendor/**]
+# indent_style = unset
+# indent_size = unset
+
+# -----------------------------------------------------------------------------
+# 4. Error Handling
+# -----------------------------------------------------------------------------
+#
+# [Reserved: Editors silently ignore unknown EditorConfig properties.
+#  Invalid values are ignored, file type falls back to defaults.]
+#
+# -----------------------------------------------------------------------------
+# 5. Public Interface
+# -----------------------------------------------------------------------------
+#
+# [Reserved: EditorConfig properties ARE the interface.
+#  Editors read [glob] patterns and apply matching properties.]
+#
+# -----------------------------------------------------------------------------
+# BODY Omission Guide
+# -----------------------------------------------------------------------------
+#
+# ALL five BODY sections must be present for structural alignment.
+#
+# EditorConfig-specific guidance:
+#   1. Configuration Structure Map: Required - documents rule categories
+#   2. Helpers/Utilities: [Reserved: declarative config]
+#   3. Configuration Content: Required - the actual formatting rules
+#   4. Error Handling: [Reserved: editors ignore unknown properties]
+#   5. Public Interface: [Reserved: properties ARE the interface]
+#
+# =============================================================================
+# END BODY
+# =============================================================================
+
+# =============================================================================
+# CLOSING
+# =============================================================================
+#
+# For CLOSING structure explanation, see: standards/code/4-block/CWS-STD-008-CODE-closing-block.md
+#
+# -----------------------------------------------------------------------------
+# CLOSING Sections Overview
+# -----------------------------------------------------------------------------
+#
+# GROUP 1: VALIDATION
+#   1. Validation      - How to verify EditorConfig is working
+#   2. Execution       - [Reserved: EditorConfig doesn't execute]
+#   3. Cleanup         - [Reserved: no cleanup needs]
+#
+# GROUP 2: FINAL DOCUMENTATION
+#   4. Performance     - [Reserved: editor reads at file open]
+#   5. Security        - [Reserved: no security implications]
+#   6. Dependencies    - [Reserved: in METADATA]
+#   7. Integration     - Integration with Prettier, formatters, Git
+#   8. Known Issues    - [Reserved: template]
+#   9. Changelog       - [Reserved: in METADATA]
+#  10. See Also        - [Reserved: in METADATA]
+#  11. Modification Policy - Safe/careful/never guidance
+#  12. Closing Note    - Final guidance and biblical connection
+#  13. Attribution     - [Reserved: in METADATA]
+#
+# =============================================================================
+# GROUP 1: VALIDATION
+# =============================================================================
+#
+# -----------------------------------------------------------------------------
+# 1. Validation
+# -----------------------------------------------------------------------------
+#
+# Verify EditorConfig is working:
+#
+#   # Check EditorConfig for a specific file
+#   editorconfig [filename]
+#
+#   # In VS Code, check bottom status bar for "Spaces: 4" or "Tab Size: 4"
+#
+#   # Verify with editorconfig-checker tool
+#   ec -config .editorconfig
+#
+# Common Issues:
+#
+#   "Settings not applied" - Check if editor has EditorConfig plugin
+#   "Conflict with Prettier" - Ensure EditorConfig and Prettier agree
+#   "Tabs in Go files showing wrong" - Tab display width is editor setting
+#
+# -----------------------------------------------------------------------------
+# 2. Execution
+# -----------------------------------------------------------------------------
+#
+# [Reserved: EditorConfig files don't execute. Editors read at file open.]
+#
+# -----------------------------------------------------------------------------
+# 3. Cleanup
+# -----------------------------------------------------------------------------
+#
+# [Reserved: EditorConfig files have no cleanup needs. Static rule definitions.]
+#
+# =============================================================================
+# GROUP 2: FINAL DOCUMENTATION
+# =============================================================================
+#
+# -----------------------------------------------------------------------------
+# 4. Performance Considerations
+# -----------------------------------------------------------------------------
+#
+# [Reserved: EditorConfig is read once per file open. Negligible overhead.]
+#
+# -----------------------------------------------------------------------------
+# 5. Security Considerations
+# -----------------------------------------------------------------------------
+#
+# [Reserved: EditorConfig has no security implications.
+#  Only affects text formatting, not execution.]
+#
+# -----------------------------------------------------------------------------
+# 6. Dependencies
+# -----------------------------------------------------------------------------
+#
+# [Reserved: Dependencies documented in METADATA.]
+#
+# -----------------------------------------------------------------------------
+# 7. Integration Notes
+# -----------------------------------------------------------------------------
+#
+# EditorConfig sets base formatting. Other tools build on it:
+#
+#   - Prettier: Respects EditorConfig, adds more formatting rules
+#   - ESLint: Code quality + some formatting (prefer EditorConfig for basics)
+#   - gofmt/rustfmt: Language formatters (may override EditorConfig)
+#   - Git: Configure core.autocrlf=input to complement end_of_line=lf
+#
+# Recommended .gitattributes companion:
+#   * text=auto eol=lf
+#   *.{cmd,[cC][mM][dD]} text eol=crlf
+#   *.{bat,[bB][aA][tT]} text eol=crlf
+#
+# -----------------------------------------------------------------------------
+# 8. Known Issues
+# -----------------------------------------------------------------------------
+#
+# [Reserved: Template file - no known issues to document.]
+#
+# -----------------------------------------------------------------------------
+# 9. Changelog
+# -----------------------------------------------------------------------------
+#
+# [Reserved: Version history documented in METADATA.]
+#
+# -----------------------------------------------------------------------------
+# 10. See Also
+# -----------------------------------------------------------------------------
+#
+# [Reserved: References documented in METADATA and SETUP.]
+#
+# -----------------------------------------------------------------------------
+# 11. Modification Policy
+# -----------------------------------------------------------------------------
+#
+# Safe to Modify:
+#   ✅ Add new file type sections
+#   ✅ Adjust indent_size for specific languages
+#   ✅ Add project-specific overrides at bottom
+#
+# Modify with Care:
+#   ⚠️ Changing indent_style for established file types
+#   ⚠️ Changing end_of_line (affects all contributors)
+#   ⚠️ Removing trim_trailing_whitespace (leads to noisy diffs)
+#
+# NEVER Modify:
+#   ❌ charset = utf-8 (universal standard)
+#   ❌ end_of_line = lf (Linux-first principle)
+#   ❌ root = true (breaks configuration hierarchy)
+#   ❌ Makefile tab requirement (syntax requirement)
+#   ❌ 4-block documentation structure
+#
+# -----------------------------------------------------------------------------
+# 12. Closing Note
+# -----------------------------------------------------------------------------
+#
+# This EditorConfig establishes consistent formatting across all editors
+# and contributors. Changes affect the entire development experience.
+#
+# "Let all things be done decently and in order." - 1 Corinthians 14:40
+#
+# May consistent formatting reduce friction and enable excellent work.
+#
+# -----------------------------------------------------------------------------
+# 13. Attribution
+# -----------------------------------------------------------------------------
+#
+# [Reserved: Attribution documented in METADATA - Authorship section.]
+#
+# -----------------------------------------------------------------------------
+# CLOSING Omission Guide
+# -----------------------------------------------------------------------------
+#
+# ALL thirteen CLOSING sections must be present for structural alignment.
+#
+# EditorConfig-specific guidance:
+#   1. Validation: Required - editorconfig commands
+#   2. Execution: [Reserved: EditorConfig doesn't execute]
+#   3. Cleanup: [Reserved: no cleanup needs]
+#   4. Performance: [Reserved: negligible]
+#   5. Security: [Reserved: no security implications]
+#   6. Dependencies: [Reserved: in METADATA]
+#   7. Integration: Required - Prettier, formatters, Git
+#   8. Known Issues: [Reserved: template]
+#   9. Changelog: [Reserved: in METADATA]
+#  10. See Also: [Reserved: in METADATA]
+#  11. Modification Policy: Required - safe/careful/never
+#  12. Closing Note: Required - final guidance
+#  13. Attribution: [Reserved: in METADATA]
+#
+# =============================================================================
+# END CLOSING
+# =============================================================================

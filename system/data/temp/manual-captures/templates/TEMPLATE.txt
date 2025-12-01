@@ -1,0 +1,34 @@
+# Manual Capture Template (Plain Text)
+# Date: YYYY-MM-DD
+# Type: [session-notes / sleep-tracking / activity-log / pattern-observation / etc]
+# Description: [Brief description of what you're capturing]
+
+================================================================================
+CAPTURE START
+================================================================================
+
+[Record your observations, timestamps, or data here in whatever format makes sense]
+
+Example formats:
+
+TIMESTAMP FORMAT:
+HH:MM - Event description
+HH:MM - Event description
+
+NARRATIVE FORMAT:
+Today I noticed...
+The pattern seems to be...
+
+LIST FORMAT:
+- Item 1
+- Item 2
+- Item 3
+
+================================================================================
+CAPTURE END
+================================================================================
+
+Notes:
+- [Any additional context, observations, or things to remember when migrating]
+- [What automation should capture this in the future]
+- [Any validation criteria for migration]

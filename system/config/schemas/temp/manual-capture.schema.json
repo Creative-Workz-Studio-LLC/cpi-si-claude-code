@@ -1,0 +1,150 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cpi-si.org/schemas/temp/manual-capture/v1.0.0",
+  "title": "CPI-SI Manual Capture Schema",
+  "description": "Schema for temporary manual data captures while building automation. Intentionally flexible to accommodate various capture types during bootstrap phase.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["capture_metadata", "data"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema reference"
+    },
+    "capture_metadata": {
+      "type": "object",
+      "description": "Metadata about what is being captured",
+      "required": ["date", "type", "description"],
+      "additionalProperties": true,
+      "properties": {
+        "date": {
+          "type": "string",
+          "description": "Date of capture (YYYY-MM-DD)",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of capture",
+          "examples": ["session-notes", "activity-log", "pattern-observation", "sleep-tracking", "work-context"]
+        },
+        "description": {
+          "type": "string",
+          "description": "Brief description of what this captures",
+          "minLength": 1
+        },
+        "captured_by": {
+          "type": "string",
+          "description": "User ID or instance ID that captured this data"
+        },
+        "automation_target": {
+          "type": "string",
+          "description": "Where this data will eventually live once automated"
+        }
+      }
+    },
+    "data": {
+      "type": "object",
+      "description": "The actual captured data - structure varies by capture type",
+      "additionalProperties": true,
+      "properties": {
+        "session_id": {
+          "type": "string",
+          "description": "Session identifier if capturing session data"
+        },
+        "activities": {
+          "type": "array",
+          "description": "Activity entries if capturing session activities",
+          "items": {
+            "type": "object",
+            "properties": {
+              "timestamp": {"type": "string"},
+              "activity": {"type": "string"},
+              "context": {"type": "string"}
+            }
+          }
+        },
+        "sleep_periods": {
+          "type": "array",
+          "description": "Sleep/downtime periods if tracking rest",
+          "items": {
+            "type": "object",
+            "properties": {
+              "start": {"type": "string", "format": "date-time"},
+              "end": {"type": "string", "format": "date-time"},
+              "duration_minutes": {"type": "number"},
+              "notes": {"type": "string"}
+            }
+          }
+        },
+        "patterns_observed": {
+          "type": "array",
+          "description": "Pattern observations for pattern recognition",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pattern": {"type": "string"},
+              "evidence": {"type": "string"},
+              "frequency": {"type": "string"},
+              "confidence": {
+                "type": "string",
+                "enum": ["emerging", "establishing", "validated"]
+              }
+            }
+          }
+        },
+        "work_context": {
+          "type": "object",
+          "description": "Work context information",
+          "properties": {
+            "project": {"type": "string"},
+            "workflow": {"type": "string"},
+            "focus": {"type": "string"},
+            "outcomes": {"type": "string"}
+          }
+        },
+        "observations": {
+          "type": "array",
+          "description": "Generic timestamped observations",
+          "items": {
+            "type": "object",
+            "properties": {
+              "timestamp": {"type": "string"},
+              "observation": {"type": "string"},
+              "significance": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "migration": {
+      "type": "object",
+      "description": "Migration planning information",
+      "additionalProperties": true,
+      "properties": {
+        "destination": {
+          "type": "string",
+          "description": "Where this should be migrated to"
+        },
+        "format_changes": {
+          "type": "string",
+          "description": "What needs to be transformed during migration"
+        },
+        "validation": {
+          "type": "string",
+          "description": "How to verify migration was successful"
+        },
+        "dependencies": {
+          "type": "string",
+          "description": "What needs to exist before migration can happen"
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "description": "Additional context and notes",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

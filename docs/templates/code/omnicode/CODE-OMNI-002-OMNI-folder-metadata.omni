@@ -1,0 +1,483 @@
+#!omni folder
+
+// ═══════════════════════════════════════════════════════════════════════════
+// METADATA
+// ═══════════════════════════════════════════════════════════════════════════
+
+this is a folder for "[Folder Name]":
+    keyed as "[PROJECT-FOLDER-###]"
+    following "Ternary File System"
+
+this folder classifies as:
+    word (1) when "containing definitions, specifications, source of truth"
+    work (0) when "containing implementations, instances, active development"
+    fruit (-1) when "containing derivations, outputs, generated artifacts"
+
+this folder derives from:
+    root (1) when "top-level ternary directory"
+    branch (0) from "[parent folder]" as "[relationship]"
+    leaf (-1) when "terminal directory, no children expected"
+    documented at "[path/to/related/docs]"
+
+to use this template:
+    copy as root.omni into the folder being defined
+    replace [bracketed] placeholders with actual content
+    this file IS the folder's metadata until native support exists
+    remove this preamble section when adapted
+
+// ───────────────────────────────────────────────────────────────────────────
+
+core identity of this folder:
+
+    grounded in:
+        scripture "[Relevant verse grounding this folder's purpose]"
+            from [Book Chapter:Verse] in [KJV/WEB]
+        principle "[Kingdom principle this organization demonstrates]"
+        anchor "[Supporting verse reinforcing the principle]"
+            from [Book Chapter:Verse] in [KJV/WEB]
+
+    serves as [Word/Work/Fruit]:
+        role "[Specific responsibility in file system architecture]"
+        paradigm "Ternary File System - Word/Work/Fruit"
+
+    authored by:
+        architect "[Who designed this folder's purpose]"
+        implementation "[Who created and maintains it]"
+        created [YYYY-MM-DD]
+        version [MAJOR.MINOR.PATCH]
+        modified [YYYY-MM-DD] for "[what changed]"
+
+    exists to:
+        purpose "[What problem does organizing things here solve?]"
+        design "[Organizational pattern - by type, by project, by concern]"
+        philosophy "[Guiding principle for what belongs here]"
+        features:
+            "[Major organizational benefit 1]"
+            "[Major organizational benefit 2]"
+            "[Major organizational benefit 3]"
+
+interface of this folder:
+
+    depends on:
+        requires (1) "[parent folder]" for "[containment]"
+        includes (0) "[sibling folder]" for "[collaboration]"
+        excludes (-1) "[conflicting folder]" because "[organizational reason]"
+        used by "[What processes, tools, or workflows access this folder]"
+        integrates with "[Cross-folder relationships]"
+
+    integrated as:
+        navigation "cd [path]" for "entering this folder"
+        navigation "ls -la" for "viewing contents"
+        exits word (1) for "definitions found"
+        exits work (0) for "implementations found"
+        exits fruit (-1) for "derivations found"
+
+operational context of this folder:
+
+    blocking:
+        [yes (1) / conditional (0) / no (-1)] because "[brief explanation]"
+        mitigation "[how access issues are handled]"
+
+    health:
+        system Base100 with scale from -100 to +100
+        granted (1) above +50 meaning "folder well-organized"
+        deferred (0) within ±50 meaning "needs attention"
+        denied (-1) below -50 meaning "requires reorganization"
+
+        operations:
+            "[contents aligned]" scores +[X] (1) for "[properly categorized]"
+            "[contents mixed]" scores 0 (0) for "[needs review]"
+            "[contents misplaced]" scores -[X] (-1) for "[wrong location]"
+
+        cascade multipliers:
+            "[child folder health]" multiplies by [X] because "[inheritance]"
+
+// ═══════════════════════════════════════════════════════════════════════════
+// END METADATA
+// ═══════════════════════════════════════════════════════════════════════════
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SETUP
+// ═══════════════════════════════════════════════════════════════════════════
+//
+// 3 Tiers, 6 Sections:
+//   Tier 1 - INPUTS (1 section): What flows into this folder
+//   Tier 2 - DEFINITIONS (4 sections): What this folder establishes
+//   Tier 3 - INFRASTRUCTURE (1 section): What supports this folder
+//
+// ═══════════════════════════════════════════════════════════════════════════
+
+inputs of this folder:
+
+    requires:
+        from parent (1):
+            inherits "[pattern]" for "[organizational consistency]"
+            inherits "[naming convention]" for "[predictability]"
+
+        from siblings (0):
+            references "[sibling folder]" for "[cross-reference]"
+
+        from external (-1):
+            [none - this folder is self-contained]
+
+definitions of this folder:
+
+    constants:
+        established (1):
+            NAMING_PATTERN be word of "[pattern]" meaning "how files are named"
+            DEPTH_LIMIT be count of [N] meaning "maximum nesting depth"
+
+        derived (0):
+            [none - no constants inherited from parent]
+
+        reserved (-1):
+            [none - all conventions defined]
+
+    variables:
+        active (1):
+            contents be gathering of "[file types]" for "primary contents"
+            subfolders be gathering of "[folder names]" for "child directories"
+
+        standby (0):
+            [none - no conditional contents]
+
+        reserved (-1):
+            [none - all variables defined]
+
+    assemblies:
+        defined (1):
+            /// File entry in this folder
+            ///
+            /// teaching: Files as entries - each has identity and purpose
+            ///
+            FileEntry containing:
+                meaning "A file that belongs in this folder"
+
+                name be word
+                    meaning "File name following naming convention"
+                    cautioning "Must match folder's naming pattern"
+
+                purpose be word
+                    meaning "Why this file belongs here"
+
+            /// Subfolder entry in this folder
+            SubfolderEntry containing:
+                meaning "A child folder under this folder"
+
+                name be word
+                    meaning "Subfolder name"
+
+                classification be word
+                    meaning "word/work/fruit classification"
+
+        extended (0):
+            [none - no assemblies extended from parent folder]
+
+        reserved (-1):
+            [none - all assemblies defined]
+
+    methods:
+        implemented (1):
+            validate for FileEntry that returns truth
+            classify for SubfolderEntry that returns word
+
+        inherited (0):
+            [none - no methods inherited from parent]
+
+        reserved (-1):
+            [none - all methods implemented]
+
+infrastructure of this folder:
+
+    rails:
+        active (1):
+            gitignore from "[pattern]" for "excluding artifacts"
+            readme from "README.md" for "folder documentation"
+
+        standby (0):
+            metadata from "root.omni" for "machine-readable folder info"
+
+        disabled (-1):
+            [none - all infrastructure available]
+
+// ═══════════════════════════════════════════════════════════════════════════
+// END SETUP
+// ═══════════════════════════════════════════════════════════════════════════
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BODY
+// ═══════════════════════════════════════════════════════════════════════════
+//
+// 3 Tiers, 5 Sections:
+//   Tier 1 - STRUCTURE (1 section): How this folder is organized
+//   Tier 2 - IMPLEMENTATION (3 sections): What this folder contains
+//   Tier 3 - INTERFACE (1 section): What this folder exposes
+//
+// ═══════════════════════════════════════════════════════════════════════════
+
+structure of this folder:
+
+    organized as:
+        ladder (dependencies):
+            documented (1):
+                Folder hierarchy:
+                    parent contains this
+                    this contains children
+                    children contain grandchildren
+
+                Contents organization:
+                    primary files (main content)
+                    supporting files (helpers)
+                    metadata files (self-description)
+
+            implied (0):
+                [none - all structure explicitly documented]
+
+            omitted (-1):
+                [none - full structure documented]
+
+        baton (navigation flow):
+            documented (1):
+                entry through "[parent folder]"
+                    flows to "[this folder]"
+                        flows to "[primary content]"
+                            returns "[result]"
+                        flows to "[subfolders]"
+                            returns "[contents]"
+                exit with navigation complete
+
+            implied (0):
+                [none - all flows explicitly mapped]
+
+            omitted (-1):
+                [none - full flow documented]
+
+implementation of this folder:
+
+    helpers:
+        internal (1):
+            establish pattern naming_convention:
+                meaning "How files in this folder are named"
+                teaching "Consistent naming aids machine and human navigation"
+                examples:
+                    "[example-file.ext]" follows convention
+                    "[BAD_FILE.ext]" violates convention
+
+            establish pattern organization_rule:
+                meaning "How contents are arranged within folder"
+                teaching "Predictable organization reduces cognitive load"
+
+        shared (0):
+            [none - no patterns imported from other folders]
+
+        reserved (-1):
+            [none - all patterns implemented]
+
+    operations:
+        implemented (1):
+            establish operation add_file:
+                meaning "Add a new file that belongs in this folder"
+                teaching "Files added here must match folder's purpose"
+                cautioning "Verify file matches folder classification before adding"
+
+                validate file matches "[folder classification]"
+                validate file follows "[naming convention]"
+                place file in appropriate location
+
+            establish operation add_subfolder:
+                meaning "Create a new child folder"
+                teaching "Subfolders inherit organizational principles"
+
+                validate subfolder has clear classification
+                validate subfolder follows naming convention
+                create with root.omni metadata
+
+        delegated (0):
+            [none - no operations delegated to other folders]
+
+        reserved (-1):
+            [none - all operations implemented]
+
+    recovery:
+        handled (1):
+            establish operation reorganize:
+                meaning "Move misplaced contents to correct locations"
+                teaching "Periodic reorganization maintains folder health"
+
+                identify misplaced files
+                determine correct destination
+                move to appropriate folder
+
+            establish operation validate_structure:
+                meaning "Check folder health and organization"
+                teaching "Regular validation catches drift early"
+
+                check naming conventions followed
+                check contents match classification
+                report health score
+
+        propagated (0):
+            [none - no issues propagated to parent]
+
+        ignored (-1):
+            [none - all issues addressed]
+
+interface of this folder:
+
+    exposes:
+        exported (1):
+            /// Primary contents of this folder
+            ///
+            /// returns: gathering - list of main files
+            ///
+            /// teaching: Primary contents are the reason this folder exists
+            ///
+            provide contents primary:
+                meaning "The main files this folder contains"
+                teaching "These are the core deliverables of this folder"
+
+                "[primary file 1]" as "[purpose]"
+                "[primary file 2]" as "[purpose]"
+
+            /// Child folders under this folder
+            ///
+            /// returns: gathering - list of subfolders
+            ///
+            provide contents children:
+                meaning "Subfolders organized under this folder"
+
+                "[child1/]" classified as "[word/work/fruit]"
+                "[child2/]" classified as "[word/work/fruit]"
+
+        internal (0):
+            metadata referenced in root.omni
+            conventions referenced in naming patterns
+            structure referenced in organization
+
+        reserved (-1):
+            [none - all interfaces defined]
+
+// ═══════════════════════════════════════════════════════════════════════════
+// END BODY
+// ═══════════════════════════════════════════════════════════════════════════
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CLOSING
+// ═══════════════════════════════════════════════════════════════════════════
+//
+// 3 Tiers, 13 Sections:
+//   Tier 1 - OPERATIONS (3 sections): Validation, execution, cleanup
+//   Tier 2 - POLICY (2 sections): Modification guidance, future direction
+//   Tier 3 - SYNTHESIS (8 sections): References (6) + closing note + quick reference
+//
+// ═══════════════════════════════════════════════════════════════════════════
+
+operations of this folder:
+
+    verified by:
+        build (1):
+            "ls -la [folder]" showing "expected contents"
+            "tree [folder]" showing "expected structure"
+
+        runtime (0):
+            "cd [folder]" allowing "navigation"
+            "find [folder] -name '[pattern]'" finding "[expected files]"
+
+        tests (-1):
+            "[validation script]" expecting "all pass"
+            [none - validation not yet automated]
+
+    executed through:
+        establish navigation main:
+            meaning "Primary way to access and use this folder"
+            teaching "Navigation as the 'execution' of a folder"
+
+            enter from "[parent folder]"
+            locate "[primary contents]"
+            navigate to "[destination or action]"
+            exit to "[next location]"
+
+    cleaned by:
+        resources:
+            managed (1):
+                "[temp files]" via "periodic cleanup"
+
+            pending (0):
+                [none - all cleanup defined]
+
+            unmanaged (-1):
+                [none - no orphaned files permitted]
+
+        shutdown:
+            graceful (1):
+                archival handled through "[method]"
+                deletion only when "folder empty or deprecated"
+                resources moved to "[archive location]"
+
+            partial (0):
+                [none - full graceful procedures defined]
+
+            abrupt (-1):
+                [none - no sudden deletions without review]
+
+policy of this folder:
+
+    modification:
+        safe (1):
+            "Add new files following naming conventions"
+            "Add new subfolders following classification"
+            "Update metadata to reflect changes"
+
+        careful (0):
+            "Rename folder"
+            "Change classification"
+
+        never (-1):
+            "Delete without moving contents"
+            "Mix classifications within folder"
+
+    future:
+        planned (1):
+            "[Planned subfolder or expansion]"
+            "[Planned content addition]"
+
+        considered (0):
+            "[Potential reorganization - why uncertain]"
+
+        rejected (-1):
+            "[Known limitation - why it won't change]"
+
+synthesis of this folder:
+
+    overview:
+        see "METADATA exists to" for "purpose and philosophy"
+
+    architecture:
+        see "BODY structure organized as" for "hierarchy and flow"
+
+    updates:
+        see "BODY implementation operations" for "how to modify contents"
+
+    performance:
+        see "SETUP and BODY" for "organization considerations"
+
+    troubleshooting:
+        see "BODY implementation recovery" for "reorganization patterns"
+
+    dependencies:
+        see "METADATA interface depends on" for "related folders"
+
+    closing note:
+        role "[Architectural role in ternary file system]"
+        impact "[What this folder's health affects]"
+        scripture "[Relevant closing verse]"
+            from [Book Chapter:Verse] in [KJV/WEB]
+
+    quick reference:
+        usage "cd [path/to/folder]"
+        example "ls -la [folder]"
+        help "cat root.omni"
+
+// ═══════════════════════════════════════════════════════════════════════════
+// END CLOSING
+// ═══════════════════════════════════════════════════════════════════════════

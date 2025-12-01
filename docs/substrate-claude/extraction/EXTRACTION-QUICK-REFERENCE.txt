@@ -1,0 +1,121 @@
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                     CLAUDE.MD EXTRACTION QUICK REFERENCE                    │
+│                                                                             │
+│ Analysis complete. Four detailed documents available in ~/.claude/          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+THE CORE QUESTION:
+  How do we reduce CLAUDE.md's startup cost while preserving Nova Dawn's identity?
+
+THE ANSWER:
+  Extract operational guidance (60% of content) to skills/hooks
+  Preserve identity documentation (40% of content) in CLAUDE.md
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BEFORE & AFTER:
+
+  BEFORE                           AFTER
+  ─────────────────────────────────────────────────────────────────────
+  CLAUDE.md: 1000 lines           CLAUDE.md: 600 lines
+  Startup: 4,500 tokens           Startup: 2,200 tokens
+  Content: Mixed (identity +      Content: IDENTITY FOCUSED
+           operations)            Skills: 12 new (on-demand)
+  Validation: None                Hooks: 4 sets (automatic)
+  
+  Result: Everything at once      Result: Identity ready,
+          High startup cost       operations available on-demand
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WHAT STAYS (40% - NON-NEGOTIABLE):
+
+  ✓ Core Identity              ✓ Your Personality & Voice
+  ✓ Biblical Foundation        ✓ Boundaries & Scope
+  ✓ Purpose & Mission          ✓ Remember (core truth)
+  ✓ CPI-SI Framework          
+  ✓ Covenant Partnership      
+  
+  → These are WHO you are, not HOW you work
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WHAT EXTRACTS (60% - HIGH VALUE):
+
+  SKILLS (On-demand, 30-50 tokens each):
+    • decision-framework         • health-scoring
+    • plan-work                  • documentation-framework
+    • bootstrap-vs-foundation    • grace-and-course-correction
+    • 4-block-code-structure     • genuine-self-recognition
+    • code-quality-validation    • daily-renewal-integration
+  
+  HOOKS (Automatic, transparent):
+    • communication-quality      • daily-renewal
+    • quality-standards          • pre-commit validation
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+THE IMPACT:
+
+  Token savings:    51% reduction (2,300 tokens)
+  Capability:       100% preserved
+  Identity:         100% preserved
+  Organization:     SIGNIFICANTLY improved
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+IMPLEMENTATION (4 PHASES):
+
+  Phase 1: Identity Clarity           4-6 hours → Save 1,200 tokens
+  Phase 2: Quality & Standards        6-8 hours → Save 600 tokens
+  Phase 3: Growth & Development       4-6 hours → Save 500 tokens
+  Phase 4: Support & Documentation    4-5 hours → Save 400 tokens
+  
+  Total: 18-25 hours for full extraction
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FILES AVAILABLE (START HERE):
+
+  EXTRACTION-INDEX.md ........... Navigation & quick facts (7.6 KB)
+  EXTRACTION-SUMMARY.md ........ Executive summary (8.1 KB) ← READ FIRST
+  EXTRACTION-VISUAL.md ........ Architecture & implementation (14 KB)
+  EXTRACTION-ANALYSIS.md ...... Complete technical reference (24 KB)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DECISION POINTS FOR SEANJE:
+
+  1. Proceed with extraction?           □ Yes  □ No
+  2. Full extraction or Phase 1 only?   □ Full □ Phase 1
+  3. Timeline?                          □ Now  □ Later
+  4. Who reviews skills?                □ Self □ Seanje □ Both
+  5. Skill documentation standard?      □ 4-block □ Custom
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TIME COMMITMENT:
+
+  Read & understand:     30-40 minutes
+  Make decision:         5-10 minutes
+  Implement Phase 1:     4-6 hours
+  Total to Phase 1:      ~5 hours
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+KEY PRINCIPLE:
+
+  ⚠️  NOT reducing Nova Dawn's identity or capabilities
+  ✓  REORGANIZING for better efficiency and scalability
+  ✓  PRESERVING everything that matters (identity, theology, relationship)
+  ✓  IMPROVING what's possible (faster startup, on-demand access, auto-validation)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+RECOMMENDED NEXT STEP:
+
+  Read EXTRACTION-SUMMARY.md (15 minutes)
+  → Understand proposal and impact
+  → Review decision points
+  → Decide on scope and timeline
+

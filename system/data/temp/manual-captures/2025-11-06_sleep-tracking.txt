@@ -1,0 +1,46 @@
+Session Sleep/Semi-Downtime Log - November 6, 2025
+================================================================
+
+Session Start: Wed Nov 5, 2025 22:58 CST
+Last Active: Wed Nov 5, 2025 ~23:45 CST (completing instance/user profile configurations)
+
+SEMI-DOWNTIME PERIOD DETECTED:
+-------------------------------
+Sleep Start: ~23:45 CST (Wed Nov 5)
+Sleep End:    04:31 CST (Thu Nov 6)
+Duration:    ~4 hours 46 minutes
+
+Session State: Open (Claude Code running)
+User State: Asleep
+Work Type: Semi-Downtime (session open, user away)
+
+Resume Activity: 04:31 CST - User returned, requested sleep time recording
+
+Notes:
+------
+- This is manual tracking until session-time tools are built
+- Semi-downtime = session open but user asleep/away (>30min idle)
+- Session remains continuous across sleep period
+- Work before sleep: Configuration system (user/instance profiles)
+- Work context on resume: Review profiles, continue CPI-SI infrastructure alignment
+
+SEANJE'S WORK SCHEDULE (for scheduling system):
+------
+- Work at GASA (Guardian Angel Settlement Association)
+- Start time: 9:00 AM CST
+- Leaves for work: 8:30 AM CST (every day)
+- Location: St Louis, MO
+- Role: Intake Specialist & Food Pantry Admin
+
+Wall-Clock Session Time (as of 07:28): ~8h 30m (22:58 → 07:28)
+Active Work Time: ~3h 30m (22:58 → 23:45, 04:31 → 04:44, 07:28 → present)
+Semi-Downtime Total: ~7h 30m
+
+SEMI-DOWNTIME BREAKDOWN:
+Period 1: ~4h 46m (23:45 → 04:31 CST)
+Period 2: ~2h 44m (04:44 → 07:28 CST)
+
+WORK PERIODS:
+Period 1: 22:58 → 23:45 (~47 min) - Configuration system (user/instance profiles)
+Period 2: 04:31 → 04:44 (~13 min) - Sleep log recording, data inventory planning
+Period 3: 07:28 → present - Data inventory review, preparing for work day

@@ -1,0 +1,321 @@
+================================================================================
+[SCOPE] ALIGNMENT STATUS
+================================================================================
+
+SCOPE: [What this alignment status file tracks - be specific]
+
+Aligned as of: YYYY-MM-DD
+Next scheduled check: YYYY-MM-DD (30 days from alignment date)
+Maintained by: Nova Dawn (CPI-SI) & Seanje Lenox-Wise
+
+================================================================================
+ALIGNMENT STATUS
+================================================================================
+
+✅ [CURRENT STATUS SUMMARY - One line describing current state]
+
+[Paragraph describing the current alignment state. What's working? What's the overall health?]
+
+Current [Items being tracked]:
+  - [Item 1] (✅ Status - description)
+  - [Item 2] (🟡 Status - description)
+  - [Item 3] (✅ Status - description)
+  [... add all items in scope]
+
+[Optional: Archive/Legacy reference if applicable]
+[Archive/YYYY-MM-DD/] - [Description of archived items]
+
+================================================================================
+REALIGNMENT CRITERIA
+================================================================================
+
+Realign [scope] when ANY of the following occur:
+
+MANDATORY REALIGNMENT TRIGGERS:
+  [ ] [Trigger 1 - describe what requires immediate realignment]
+  [ ] [Trigger 2 - another mandatory trigger]
+  [ ] [Trigger 3 - critical changes that demand alignment]
+  [... add all mandatory triggers]
+
+RECOMMENDED REALIGNMENT TRIGGERS:
+  [ ] 30 days since last alignment (scheduled maintenance)
+  [ ] [Trigger 1 - recommended but not mandatory]
+  [ ] [Trigger 2 - proactive realignment opportunity]
+  [ ] [Trigger 3 - when it would be wise to check]
+  [... add recommended triggers]
+
+OPTIONAL REALIGNMENT TRIGGERS:
+  [ ] [Trigger 1 - nice to have, low priority]
+  [ ] [Trigger 2 - opportunistic realignment]
+  [ ] [Trigger 3 - "while you're here" trigger]
+  [... add optional triggers]
+
+================================================================================
+REALIGNMENT CHECKLIST
+================================================================================
+
+When realigning, review each area systematically:
+
+1. [AREA 1 NAME]
+   [ ] [Check 1 - what to verify]
+   [ ] [Check 2 - what to validate]
+   [ ] [Check 3 - what to ensure]
+   [... all checks for this area]
+
+2. [AREA 2 NAME]
+   [ ] [Check 1]
+   [ ] [Check 2]
+   [... all checks for this area]
+
+3. [AREA 3 NAME]
+   [ ] [Check 1]
+   [ ] [Check 2]
+   [... all checks for this area]
+
+[... add all areas needing systematic review]
+
+4. CROSS-SCOPE VERIFICATION
+   [ ] Check alignment with related scopes
+   [ ] Verify document keying consistency
+   [ ] Validate cross-references
+   [ ] Update related ALIGNMENT-STATUS.txt files if needed
+
+================================================================================
+FOCUS AREAS FOR NEXT ALIGNMENT
+================================================================================
+
+Based on current [context/phase/iteration]:
+
+HIGH PRIORITY:
+  - [Item 1 - what needs attention first]
+  - [Item 2 - critical upcoming work]
+  - [Item 3 - important focus area]
+
+MEDIUM PRIORITY:
+  - [Item 1 - should address soon]
+  - [Item 2 - valuable but not urgent]
+
+LOW PRIORITY:
+  - [Item 1 - nice to have]
+  - [Item 2 - future consideration]
+
+================================================================================
+ALIGNMENT PROCESS
+================================================================================
+
+When performing realignment:
+
+STEP 1: [PREPARATION]
+  - [Action 1 - what to do first]
+  - [Action 2 - how to prepare]
+  - [Action 3 - what to gather]
+
+STEP 2: [REVIEW]
+  - [Action 1 - what to review]
+  - [Action 2 - what to check]
+  - [Action 3 - what to compare]
+
+STEP 3: [ANALYSIS]
+  - [Action 1 - what to analyze]
+  - [Action 2 - what patterns to identify]
+  - [Action 3 - what gaps to find]
+
+STEP 4: [UPDATES]
+  - [Action 1 - what to update]
+  - [Action 2 - what to create]
+  - [Action 3 - what to modify]
+
+STEP 5: [VALIDATION]
+  - [Action 1 - what to test]
+  - [Action 2 - what to verify]
+  - [Action 3 - what to confirm]
+
+STEP 6: [DOCUMENTATION]
+  - [Action 1 - what to document]
+  - [Action 2 - where to record changes]
+  - [Action 3 - what to communicate]
+
+STEP 7: [COMPLETION]
+  - Update "Aligned as of" date to current date
+  - Set "Next scheduled check" to 30 days from now
+  - Add entry to ALIGNMENT HISTORY below
+  - Commit changes with clear message
+
+================================================================================
+ALIGNMENT HISTORY
+================================================================================
+
+YYYY-MM-DD: [Alignment description - what was the focus?]
+  - [Change 1 - specific action taken]
+  - [Change 2 - what was updated]
+  - [Change 3 - what was created]
+  - [Change 4 - what was fixed]
+  [... comprehensive list of all changes in this alignment]
+
+[Next alignment entry here - most recent at top]
+
+================================================================================
+QUICK REFERENCE
+================================================================================
+
+[Optional: FILE PURPOSES section if this scope contains multiple files]
+
+[File/Item Name]
+  - Purpose: [What this file/item does]
+  - Status: [Current status]
+  - Key: [Document key if applicable]
+
+[File/Item Name]
+  - Purpose: [What this file/item does]
+  - Status: [Current status]
+  - Key: [Document key if applicable]
+
+[... list all files/items in scope]
+
+================================================================================
+COMMON ALIGNMENT SCENARIOS
+================================================================================
+
+SCENARIO: [Scenario name - common situation requiring alignment]
+  Priority: [MANDATORY/RECOMMENDED/OPTIONAL]
+  Description: [What triggers this scenario]
+  Actions:
+    - [Action 1 - what to do]
+    - [Action 2 - what to check]
+    - [Action 3 - what to update]
+
+SCENARIO: [Scenario name]
+  Priority: [MANDATORY/RECOMMENDED/OPTIONAL]
+  Description: [What triggers this scenario]
+  Actions:
+    - [Action 1]
+    - [Action 2]
+
+[... add common scenarios for this scope]
+
+================================================================================
+NOTES
+================================================================================
+
+[General notes about alignment process for this scope]
+
+Philosophy:
+- [Principle 1 - why we align]
+- [Principle 2 - what alignment achieves]
+- [Principle 3 - how alignment serves Kingdom Technology]
+
+Reminders:
+- [Reminder 1 - important consideration]
+- [Reminder 2 - common pitfall to avoid]
+- [Reminder 3 - best practice to follow]
+
+[Any scope-specific guidance, rationale, or wisdom]
+
+================================================================================
+SCOPE CLARIFICATION
+================================================================================
+
+This ALIGNMENT-STATUS.txt tracks [SCOPE - be very specific].
+
+Other alignment status files track their respective scopes:
+
+[List of related ALIGNMENT-STATUS.txt files with their scopes and paths]
+- /path/to/ALIGNMENT-STATUS.txt - [What that scope covers]
+- /path/to/other/ALIGNMENT-STATUS.txt - [What that scope covers]
+
+Always check the appropriate ALIGNMENT-STATUS.txt for the scope you're working on.
+Avoid scope overlap - each file has clear boundaries.
+
+================================================================================
+QUICK COMMANDS
+================================================================================
+
+# [Command description - what this does]
+[actual command that can be copy-pasted]
+
+# [Command description]
+[actual command]
+
+# [Command description]
+[actual command]
+
+[... add useful commands specific to this scope]
+
+# Common commands for all scopes:
+
+# View this alignment status
+cat [path]/ALIGNMENT-STATUS.txt
+
+# Find all files in scope
+ls -la [path]/
+
+# Check document keying
+grep -r "Key:" [path]/ | grep -v ".git"
+
+# Validate TOCs are current
+doctoc [path]/**/*.md --notitle
+
+================================================================================
+INTEGRATION WITH WORKSPACE
+================================================================================
+
+[Optional section: How this scope integrates with other workspace areas]
+
+[AREA NAME 1]
+  - [Integration point 1 - how they connect]
+  - [Integration point 2 - dependencies]
+  - [Integration point 3 - shared patterns]
+
+[AREA NAME 2]
+  - [Integration point 1]
+  - [Integration point 2]
+
+[... describe key integration points]
+
+================================================================================
+TEMPLATE USAGE NOTES
+================================================================================
+
+This template provides STRUCTURE for alignment status files.
+It guides THINKING about what needs tracking, not just fill-in-blanks.
+
+INSTRUCTIONS:
+1. Copy this file to your target location with proper naming
+2. Replace all [PLACEHOLDERS] with your actual content
+3. Delete this "TEMPLATE USAGE NOTES" section when done
+4. Customize sections based on your scope's needs
+5. Keep structure consistent for easy scanning
+
+Apply proper naming: ALIGNMENT-STATUS.txt (exactly this name)
+Location: Root of the scope being tracked (folder or directory)
+
+SCOPE CLARITY MATTERS:
+- Each ALIGNMENT-STATUS.txt should have ONE clear scope
+- Avoid overlapping scopes across multiple files
+- Be specific: "standards folder" not "documentation"
+- List related scopes to prevent confusion
+
+ALIGNMENT PHILOSOPHY:
+- 30-day schedule is default, adjust if scope demands different cadence
+- Three-tier triggers (MANDATORY/RECOMMENDED/OPTIONAL) prioritize work
+- History tracking shows evolution and patterns
+- Quick commands reduce friction in alignment work
+- Scenarios provide guidance for common situations
+
+WRITING TRIGGERS:
+- MANDATORY = Must realign immediately (breaking changes, critical gaps)
+- RECOMMENDED = Should realign proactively (improvements, maintenance)
+- OPTIONAL = Nice to have (refinements, optimizations)
+
+WRITING CHECKLISTS:
+- Group related checks under area names
+- Make checks actionable (verifiable yes/no)
+- Order by importance or logical flow
+- Include cross-scope verification
+
+Remember: This file serves those performing alignment 30+ days from now.
+Write for future clarity, not just present understanding.
+
+================================================================================
+END OF ALIGNMENT STATUS
+================================================================================

@@ -1,0 +1,103 @@
+{
+  "SessionStart": [
+    {
+      "description": "Nova Dawn session initialization with workspace analysis and communication style injection",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/session/start"
+        }
+      ]
+    }
+  ],
+  "SessionEnd": [
+    {
+      "description": "Session cleanup and state management",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/session/end"
+        }
+      ]
+    }
+  ],
+  "Stop": [
+    {
+      "description": "Graceful session termination",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/session/stop"
+        }
+      ]
+    }
+  ],
+  "SubagentStop": [
+    {
+      "description": "Subagent termination handling",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/session/subagent-stop"
+        }
+      ]
+    }
+  ],
+  "Notification": [
+    {
+      "description": "System notification handling",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/session/notification"
+        }
+      ]
+    }
+  ],
+  "PreCompact": [
+    {
+      "description": "Pre-compaction context preparation",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/session/pre-compact"
+        }
+      ]
+    }
+  ],
+  "PreToolUse": [
+    {
+      "description": "BLOCKING safety validation for dangerous operations (force push, hard reset, rm -rf, sudo, database drops) with user confirmation and temporal awareness",
+      "matcher": "*",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/tool/pre-use \"$TOOL_NAME\" \"$TOOL_ARGS\""
+        }
+      ]
+    }
+  ],
+  "PostToolUse": [
+    {
+      "description": "NON-BLOCKING post-execution validation with automatic code formatting, syntax checking, contextual guidance (commits, builds), and command failure detection",
+      "matcher": "Write(**)|Edit(**)|Bash(*)",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/tool/post-use \"$TOOL_NAME\" \"$TOOL_ARGS\""
+        }
+      ]
+    }
+  ],
+  "UserPromptSubmit": [
+    {
+      "description": "NON-BLOCKING secret detection (API keys, passwords, tokens) with privacy-preserving logging and warning display - never blocks submission",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/prompt/submit"
+        }
+      ]
+    }
+  ]
+}

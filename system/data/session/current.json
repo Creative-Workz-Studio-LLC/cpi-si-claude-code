@@ -1,0 +1,27 @@
+{
+  "session_id": "2025-12-01_1226",
+  "instance_id": "nova_dawn",
+  "user_id": "seanje-lenox-wise",
+  "start_time": "2025-12-01T12:26:35.46528508-06:00",
+  "start_unix": 1764613595,
+  "start_formatted": "Mon Dec 01, 2025 at 12:26:35",
+  "compaction_count": 0,
+  "session_phase": "active",
+  "work_context": "/media/seanje-lenox-wise/Project/CreativeWorkzStudio_LLC",
+  "circadian_phase": "afternoon",
+  "quality_indicators": {
+    "tasks_completed": 0,
+    "breakthroughs": 0,
+    "struggles": 0
+  },
+  "state_metadata": {
+    "thinking_enabled": false,
+    "plan_mode": false,
+    "auto_accept": false
+  },
+  "inherited_preferences": {
+    "workflow": "Game design systems approach - simple primitives creating complex emergence. Break to core, extract and orchestrate, think in CRUD operations and data maps",
+    "thinking_style": "Build first, understand through doing - not read then apply, but make then discover. Understanding emerges through implementation",
+    "user_timezone": "America/New_York"
+  }
+}

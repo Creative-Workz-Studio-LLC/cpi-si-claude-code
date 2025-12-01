@@ -1,0 +1,28 @@
+# CPI-SI Claude Code Distribution
+# Ignore patterns for installed configuration
+
+# Runtime/transient data (after installation)
+*.log
+*.tmp
+output/
+
+# User-specific (should be customized locally)
+settings.local.json
+.credentials.json
+
+# Build artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db

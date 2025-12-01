@@ -1,0 +1,170 @@
+# ============================================================================
+# METADATA
+# ============================================================================
+# Non-Interactive Environment Configuration - CPI-SI Interactive Terminal System
+# Purpose: Set environment variables to eliminate unnecessary interactive prompts
+# Integration: Source this file or add variables to settings.json
+# Non-blocking: Makes terminal operations seamless through Claude Code CLI
+
+# ============================================================================
+# SETUP - Package Management Defaults
+# ============================================================================
+
+# Debian/Ubuntu APT configuration
+export DEBIAN_FRONTEND=noninteractive
+export NEEDRESTART_MODE=a                    # Automatic restart decisions
+export NEEDRESTART_SUSPEND=1                 # Suspend restart prompts
+export APT_LISTCHANGES_FRONTEND=none         # Skip package change listings
+export UCF_FORCE_CONFFNEW=1                  # Use new config files without asking
+
+# ============================================================================
+# BODY - Language and Tool Configurations
+# ============================================================================
+
+# ────────────────────────────────────────────────────────────────
+# Python Package Management
+# ────────────────────────────────────────────────────────────────
+
+export PIP_NO_INPUT=1                        # No interactive prompts
+export PIP_DISABLE_PIP_VERSION_CHECK=1       # Skip version check messages
+export PYTHONDONTWRITEBYTECODE=1             # Don't create .pyc files
+export PYTHONUNBUFFERED=1                    # Unbuffered output
+
+# ────────────────────────────────────────────────────────────────
+# Node.js/NPM Configuration
+# ────────────────────────────────────────────────────────────────
+
+export NPM_CONFIG_YES=true                   # Auto-yes for npm prompts
+export NPM_CONFIG_COLOR=always               # Always use color output
+export NODE_ENV=development                  # Development mode default
+
+# ────────────────────────────────────────────────────────────────
+# Rust/Cargo Configuration
+# ────────────────────────────────────────────────────────────────
+
+export RUST_BACKTRACE=1                      # Show backtraces on panic
+export CARGO_TERM_COLOR=always               # Always use color output
+
+# ────────────────────────────────────────────────────────────────
+# Go Configuration
+# ────────────────────────────────────────────────────────────────
+
+export GOPATH="$HOME/go"                     # Go workspace path
+
+# ────────────────────────────────────────────────────────────────
+# Docker Configuration
+# ────────────────────────────────────────────────────────────────
+
+export DOCKER_BUILDKIT=1                     # Use BuildKit for builds
+export COMPOSE_DOCKER_CLI_BUILD=1            # Use Docker CLI for compose
+export DOCKER_SCAN_SUGGEST=false             # Don't suggest vulnerability scanning
+
+# ────────────────────────────────────────────────────────────────
+# Build Tools Configuration
+# ────────────────────────────────────────────────────────────────
+
+# Make parallel builds
+export MAKEFLAGS="-j$(nproc)"               # Use all CPU cores
+
+# CMake configuration
+export CMAKE_GENERATOR=Ninja                 # Use Ninja generator (if available)
+export CMAKE_BUILD_PARALLEL_LEVEL=$(nproc)  # Parallel CMake builds
+
+# ────────────────────────────────────────────────────────────────
+# Git Configuration
+# ────────────────────────────────────────────────────────────────
+
+export GIT_EDITOR=nano                       # Use nano for commits
+export GIT_PAGER="less -FRX"                 # Pager settings
+
+# ────────────────────────────────────────────────────────────────
+# General Editor Configuration
+# ────────────────────────────────────────────────────────────────
+
+export EDITOR=nano                           # Default editor
+export VISUAL=nano                           # Visual editor
+export PAGER=less                            # Default pager
+
+# Better less defaults
+export LESS="-R -F -X -i -M"                # Raw control, quit if one screen, no init, ignore case, verbose prompt
+export LESSHISTFILE=-                        # Don't create less history file
+
+# ────────────────────────────────────────────────────────────────
+# Terminal Configuration
+# ────────────────────────────────────────────────────────────────
+
+export LANG=en_US.UTF-8                      # Locale settings
+export LC_ALL=en_US.UTF-8
+export TERM=xterm-256color                   # Terminal type
+export COLORTERM=truecolor                   # Color support
+
+# ────────────────────────────────────────────────────────────────
+# Shell History Control
+# ────────────────────────────────────────────────────────────────
+
+export HISTCONTROL=ignoreboth                # Don't save duplicates or commands starting with space
+export HISTSIZE=10000                        # History size in memory
+export HISTFILESIZE=20000                    # History file size
+export HISTTIMEFORMAT="%F %T "              # Timestamp format (YYYY-MM-DD HH:MM:SS)
+
+# ────────────────────────────────────────────────────────────────
+# SSH/GPG Agent Configuration
+# ────────────────────────────────────────────────────────────────
+
+# SSH agent socket (if using systemd user service)
+if [ -n "$XDG_RUNTIME_DIR" ]; then
+    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+fi
+
+# GPG TTY for signing (needed for commit signing)
+if tty -s 2>/dev/null; then
+    export GPG_TTY=$(tty 2>/dev/null)
+fi
+
+# ────────────────────────────────────────────────────────────────
+# Sudo & PolicyKit Configuration
+# ────────────────────────────────────────────────────────────────
+
+# GUI password prompt helper for sudo operations
+# Note: sudo-rs doesn't support -A flag yet; use pkexec for GUI prompts
+export SUDO_ASKPASS="$HOME/.local/bin/sudo-askpass"
+
+# PolicyKit configuration (pkexec)
+# Disable user interaction timeout for long-running operations
+export POLKIT_DEBUG=0                        # Disable debug output (set to 1 to enable)
+
+# ────────────────────────────────────────────────────────────────
+# Claude Code Configuration
+# ────────────────────────────────────────────────────────────────
+
+export MAX_THINKING_TOKENS=10000             # Maximum thinking tokens
+export BASH_MAX_TIMEOUT_MS=300000            # 5 minute timeout for commands
+
+# ────────────────────────────────────────────────────────────────
+# CPI-SI Framework Configuration
+# ────────────────────────────────────────────────────────────────
+
+# Instance-specific (Nova Dawn)
+export NOVA_DAWN_WORKSPACE="/media/seanje-lenox-wise/Project/CreativeWorkzStudio_LLC"
+
+# Framework paths (universal for all CPI-SI instances)
+export CPI_SI_BIBLICAL_PATH="$NOVA_DAWN_WORKSPACE/foundation/biblical"
+export CPI_SI_SKILLS_PATH="$HOME/.claude/skills"
+export CPI_SI_SYSTEM_PATH="$HOME/.claude/system"
+
+# ============================================================================
+# CLOSING - Integration Instructions
+# ============================================================================
+
+# To use this configuration:
+#
+# Option 1: Source in shell startup file
+#   Add to ~/.bashrc or ~/.zshrc:
+#   source "$HOME/.claude/system/env/non-interactive.conf"
+#
+# Option 2: Add to Claude Code settings.json
+#   Copy variables to settings.json "env" section
+#
+# Option 3: Hybrid approach (recommended)
+#   Add framework-specific vars to settings.json
+#   Source this file for additional shell integration

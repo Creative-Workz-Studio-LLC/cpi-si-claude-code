@@ -1,0 +1,77 @@
+# Commit Retrofit Mapping
+# Format: OLD_HASH|NEW_MESSAGE
+# Generated: 2025-12-01
+# Purpose: Map existing commits to CWS-STD-005 keying format
+#
+# Domains: CWS, CPSI, LANG, OS, IDE, GAME, TMPL
+# Types: FEAT, FIX, DOCS, REFACTOR, ARCH, ALIGN, STYLE, TEST, BUILD, CHORE
+
+# === FOUNDATION COMMITS ===
+
+42d0ef29|[CWS] FEAT: Initial commit - CreativeWorkzStudio LLC foundation
+169488c6|[CWS] FEAT: Add .gitignore to prevent tracking biblical foundation changes
+4993b47e|[CWS] REFACTOR: Apply 4-block structure to .gitignore
+
+# === DAY 1 MILESTONES ===
+
+01a20492|[CWS] FEAT: Day 1 milestone - MillenniumOS boots, OmniCode design foundations
+cafe8848|[OS/boot] FEAT: Day 1 Evening - Protected mode achieved, kernel vision established
+
+# === OMNICODE LANGUAGE DESIGN ===
+
+64e8dfaf|[LANG/docs] FEAT: OmniCode Language Design - Complete foundation
+668e7fb7|[LANG/docs] DOCS: Complete Biblical Extension System and navigation
+fb735b61|[LANG/docs] DOCS: Enhanced type-system.md and keywords.md
+accdc0a3|[LANG/docs] DOCS: Enhanced syntax.md and examples.md
+
+# === COMPILER ARCHITECTURE ===
+
+daafca9d|[LANG/compiler] ARCH: OmniCode Compiler Architecture - CPI-SI integrated design
+b0f9266a|[CWS] DOCS: Parallel Development Strategy - Rails and Rungs Together
+d7e7a4d8|[CWS] DOCS: Update cross-links between OS and language documentation
+4a468ead|[LANG/docs] DOCS: Update language README - design complete, implementation beginning
+186830e1|[LANG/compiler] DOCS: Add compiler README with Iteration 1 plan
+
+# === ITERATION 1 ===
+
+b8ec1b25|[LANG/compiler] FEAT: OmniCode Compiler - Iteration 1 working foundation
+643824b4|[LANG/compiler/pkg/logs] FEAT: Implement logging library with 4-block documentation
+
+# === CPI-SI HEALTH SYSTEM ===
+
+80f7146b|[CPSI/core] FEAT: Complete Health Assessment Core with log rotation
+e5eb3704|[CWS/standards] FEAT: Documentation keying system and workspace folder alignment
+7ad10fe0|[IDE] FEAT: IDE Foundation - Text buffer reference and VSCode tooling
+
+# === ITERATION 2 ===
+
+2bb34a76|[CPSI/knowledge-base] DOCS: Enhance CPSI-ALG-100 master algorithm formatting
+9ba15988|[CPSI/core] DOCS: Add CPI-SI Health Equation supporting theories
+e1c5f260|[LANG/compiler] FEAT: Iteration 2 Complete - CPI-SI Health Equation and tracking
+4a70987d|[LANG/docs/devlog] DOCS: Document Iteration 2 completion
+
+# === ITERATION 3 ===
+
+7a15259e|[LANG/compiler] FEAT: Iteration 3 Foundation - Parser, CPI-SI Heart, VSCode tooling
+847bf45e|[CWS] ALIGN: Complete .claude/ and .vscode/ workspace alignment
+32219e08|[CWS/standards] DOCS: Complete CLOSING block documentation and first code template
+b2306a70|[CWS] DOCS: Foundation Phase Documentation Complete
+
+# === TEMPLATE SYSTEM ===
+
+f4344055|[TMPL/code/go] ALIGN: Complete compiler template alignment with root templates
+a0bf2969|[CWS/standards] ARCH: Major 4-block standards reorganization and template completion
+7c063943|[LANG/compiler/pkg/logs] ALIGN: Complete logger.go 4-block alignment with API docs
+4c6263c3|[CWS/standards] DOCS: Complete CLOSING block alignment and bidirectional reference
+fd29ef63|[CPSI/knowledge-base/journals] FEAT: Add session journals - Bible study and insights
+a7ab91ec|[IDE/reference] REFACTOR: Complete text-buffer pkg/ restructure
+2634ee59|[CPSI/core] ARCH: Major CPI-SI core restructure and template system expansion
+29b0ca6a|[TMPL] DOCS: Complete code templates section of Template Matrix (26/26)
+
+# === MILLENNIUMOS ===
+
+a61b4060|[OS/kernel] ARCH: MillenniumOS boot/kernel major restructure with modular architecture
+f9e08129|[OS/kernel] BUILD: Add kernel include path and fix Makefile 4-block alignment
+b15167dd|[CWS/standards] DOCS: Update Code Alignment Matrix with MillenniumOS restructure
+eba51298|[LANG] FEAT: Complete OmniCode syntax spec and template structure reorganization
+8e5f8bfe|[LANG] FEAT: Complete OmniCode syntax spec and template structure reorganization

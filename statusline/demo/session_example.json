@@ -1,0 +1,25 @@
+{
+  "hook_event_name": "session_snapshot",
+  "session_id": "demo-session-long-path-001",
+  "transcript_path": "/tmp/statusline/demo/transcripts/session-demo.log",
+  "cwd": "/home/seanje-lenox-wise/projects/kingdom/statusline/lab/systems/feature-path-compaction",
+  "model": {
+    "id": "claude-sonnet-35-20250107",
+    "display_name": "Claude 3.5 Sonnet"
+  },
+  "workspace": {
+    "current_dir": "/home/seanje-lenox-wise/projects/kingdom/statusline/lab/systems/feature-path-compaction",
+    "project_dir": "/home/seanje-lenox-wise/projects/kingdom/statusline"
+  },
+  "version": "0.9.42",
+  "output_style": {
+    "name": "kingdom-default"
+  },
+  "cost": {
+    "total_cost_usd": 0.0432,
+    "total_duration_ms": 5400000,
+    "total_api_duration_ms": 420000,
+    "total_lines_added": 180,
+    "total_lines_removed": 75
+  }
+}
