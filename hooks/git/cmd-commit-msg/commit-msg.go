@@ -110,8 +110,10 @@ var ValidTypes = []string{
 	"FEAT",     // New feature
 	"FEAT!",    // Breaking feature
 	"FIX",      // Bug fix
+	"FIX!",     // Breaking fix
 	"DOCS",     // Documentation
 	"REFACTOR", // Code restructure
+	"REFACTOR!",// Breaking refactor
 	"ARCH",     // Architecture change
 	"ARCH!",    // Breaking architecture
 	"ALIGN",    // Organization/file moves
@@ -119,6 +121,9 @@ var ValidTypes = []string{
 	"TEST",     // Tests
 	"BUILD",    // Build system
 	"CHORE",    // Maintenance
+	"PERF",     // Performance improvement
+	"CI",       // CI/CD changes
+	"SYNC",     // Synchronization between repos
 }
 
 // ValidRefPrefixes are allowed key reference prefixes
@@ -288,7 +293,7 @@ func formatError(result ValidationResult) string {
 	sb.WriteString("\n")
 	sb.WriteString(" Domains: CWS, CPSI, LANG, OS, IDE, GAME, TMPL\n")
 	sb.WriteString(" Types:   FEAT, FIX, DOCS, REFACTOR, ARCH, ALIGN, STYLE,\n")
-	sb.WriteString("          TEST, BUILD, CHORE (add ! for breaking)\n")
+	sb.WriteString("          TEST, BUILD, CHORE, PERF, CI, SYNC (add ! for breaking)\n")
 	sb.WriteString("\n")
 	sb.WriteString(" Examples:\n")
 	sb.WriteString("   [LANG/compiler/parser] FEAT: Add function declaration parsing\n")
