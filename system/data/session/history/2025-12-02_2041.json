@@ -1,11 +1,13 @@
 {
-  "session_id": "2025-12-05_1308",
+  "session_id": "2025-12-02_2041",
   "instance_id": "nova_dawn",
   "user_id": "seanje-lenox-wise",
-  "start_time": "2025-12-05T13:08:56.213031477-06:00",
-  "last_updated": "2025-12-05T13:08:56.213031477-06:00",
-  "day_of_week": "Friday",
-  "time_of_day_category": "afternoon",
+  "start_time": "2025-12-02T20:41:40.57355265-06:00",
+  "end_time": "2025-12-02T20:57:42.085489535-06:00",
+  "last_updated": "2025-12-02T20:57:42.085489535-06:00",
+  "day_of_week": "Tuesday",
+  "time_of_day_category": "evening",
+  "duration_minutes": 16,
   "work_context": "/media/seanje-lenox-wise/Project/CreativeWorkzStudio_LLC",
   "inherited_context": {
     "user_work_schedule": {
@@ -29,5 +31,6 @@
     "projects_touched": [],
     "domains": [],
     "collaboration_moments": 0
-  }
+  },
+  "stopping_reason": "Normal session end"
 }

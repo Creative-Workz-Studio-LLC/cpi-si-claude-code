@@ -19,7 +19,8 @@
 set -e
 
 # Configuration
-CWS_GLOBAL="/media/seanje-lenox-wise/Project/CreativeWorkzStudio_LLC/divisions/tech/cpi-si/claude-global"
+# Source: bereshit/word/claude/ (canonical location since 2025-12-05)
+CWS_GLOBAL="/media/seanje-lenox-wise/Project/CreativeWorkzStudio_LLC/bereshit/word/claude"
 DIST_REPO="https://github.com/Creative-Workz-Studio-LLC/cpi-si-claude-code.git"
 TEMP_DIR="/tmp/cpi-dist-sync"
 

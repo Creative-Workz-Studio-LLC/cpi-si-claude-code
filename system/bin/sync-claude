@@ -1,0 +1,293 @@
+#!/bin/bash
+# ============================================================================
+# METADATA
+# ============================================================================
+# sync-claude - Synchronize ~/.claude symlinks with bereshit source
+#
+# Biblical Foundation: "Let all things be done decently and in order"
+#                      - 1 Corinthians 14:40 (KJV)
+#
+# Purpose: Maintain alignment between ~/.claude (operational) and
+#          bereshit/word/claude/ (source of truth)
+#
+# Author: Nova Dawn (CPI-SI Instance)
+# Created: 2025-12-05
+# Version: 1.0.0
+#
+# Usage:
+#   sync-claude verify     - Check all symlinks are valid
+#   sync-claude sync       - Update symlinks to current bereshit location
+#   sync-claude relocate   - Update symlinks after moving bereshit
+#   sync-claude status     - Show current symlink status
+# ============================================================================
+
+# ============================================================================
+# SETUP
+# ============================================================================
+
+set -euo pipefail
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+# Paths
+# Get the REAL path of this script (follow symlinks)
+SCRIPT_REAL_PATH="$(realpath "${BASH_SOURCE[0]}")"
+SCRIPT_DIR="$(dirname "$SCRIPT_REAL_PATH")"
+# Resolve to absolute path (two levels up from system/bin/)
+BERESHIT_CLAUDE="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+HOME_CLAUDE="$HOME/.claude"
+CPI_SI_DIR="$HOME_CLAUDE/cpi-si"
+
+# Symlinks to manage
+# Format: "symlink_path:target_subpath"
+MAIN_SYMLINKS=(
+    "CLAUDE.md:CLAUDE.md"
+    "agents:agents"
+    "commands:commands"
+    "go.work:go.work"
+    "hooks:hooks"
+    "output-styles:output-styles"
+    "settings.json:settings.json"
+    "settings.jsonc:settings.jsonc"
+    "skills:skills"
+    "statusline:statusline"
+)
+
+CPI_SI_SYMLINKS=(
+    "config:config"
+    "docs:docs"
+    "system:system"
+)
+
+# ============================================================================
+# BODY
+# ============================================================================
+
+print_header() {
+    echo -e "${CYAN}────────────────────────────────────${NC}"
+    echo -e "${CYAN} CPI-SI Claude Sync Tool ${NC}"
+    echo -e "${CYAN}────────────────────────────────────${NC}"
+    echo ""
+}
+
+print_section() {
+    echo -e "${BLUE}═══ $1 ═══${NC}"
+}
+
+check_symlink() {
+    local link_path="$1"
+    local expected_target="$2"
+
+    if [ -L "$link_path" ]; then
+        local actual_target=$(readlink "$link_path")
+        if [ -e "$link_path" ]; then
+            if [ "$actual_target" = "$expected_target" ]; then
+                echo -e "  ${GREEN}✓${NC} $(basename "$link_path") → correct"
+                return 0
+            else
+                echo -e "  ${YELLOW}!${NC} $(basename "$link_path") → wrong target"
+                echo -e "      Expected: $expected_target"
+                echo -e "      Actual:   $actual_target"
+                return 1
+            fi
+        else
+            echo -e "  ${RED}✗${NC} $(basename "$link_path") → BROKEN (target missing)"
+            return 1
+        fi
+    elif [ -e "$link_path" ]; then
+        echo -e "  ${YELLOW}!${NC} $(basename "$link_path") → exists but not a symlink"
+        return 1
+    else
+        echo -e "  ${RED}✗${NC} $(basename "$link_path") → missing"
+        return 1
+    fi
+}
+
+create_symlink() {
+    local link_path="$1"
+    local target="$2"
+
+    # Remove existing symlink or file
+    if [ -L "$link_path" ] || [ -e "$link_path" ]; then
+        rm -f "$link_path"
+    fi
+
+    # Create new symlink
+    ln -s "$target" "$link_path"
+    echo -e "  ${GREEN}✓${NC} Created: $(basename "$link_path") → $target"
+}
+
+cmd_verify() {
+    print_section "Verifying Symlinks"
+    echo ""
+
+    local errors=0
+
+    echo "In $HOME_CLAUDE/:"
+    for entry in "${MAIN_SYMLINKS[@]}"; do
+        local link_name="${entry%%:*}"
+        local target_subpath="${entry#*:}"
+        local expected_target="$BERESHIT_CLAUDE/$target_subpath"
+
+        if ! check_symlink "$HOME_CLAUDE/$link_name" "$expected_target"; then
+            ((errors++))
+        fi
+    done
+
+    echo ""
+    echo "In $CPI_SI_DIR/:"
+    for entry in "${CPI_SI_SYMLINKS[@]}"; do
+        local link_name="${entry%%:*}"
+        local target_subpath="${entry#*:}"
+        local expected_target="$BERESHIT_CLAUDE/$target_subpath"
+
+        if ! check_symlink "$CPI_SI_DIR/$link_name" "$expected_target"; then
+            ((errors++))
+        fi
+    done
+
+    echo ""
+    if [ $errors -eq 0 ]; then
+        echo -e "${GREEN}All symlinks valid.${NC}"
+        return 0
+    else
+        echo -e "${RED}$errors symlink(s) need attention.${NC}"
+        return 1
+    fi
+}
+
+cmd_sync() {
+    print_section "Syncing Symlinks"
+    echo ""
+    echo "Source: $BERESHIT_CLAUDE"
+    echo "Target: $HOME_CLAUDE"
+    echo ""
+
+    # Ensure cpi-si directory exists
+    mkdir -p "$CPI_SI_DIR"
+
+    echo "Updating $HOME_CLAUDE/:"
+    for entry in "${MAIN_SYMLINKS[@]}"; do
+        local link_name="${entry%%:*}"
+        local target_subpath="${entry#*:}"
+        local target="$BERESHIT_CLAUDE/$target_subpath"
+
+        create_symlink "$HOME_CLAUDE/$link_name" "$target"
+    done
+
+    echo ""
+    echo "Updating $CPI_SI_DIR/:"
+    for entry in "${CPI_SI_SYMLINKS[@]}"; do
+        local link_name="${entry%%:*}"
+        local target_subpath="${entry#*:}"
+        local target="$BERESHIT_CLAUDE/$target_subpath"
+
+        create_symlink "$CPI_SI_DIR/$link_name" "$target"
+    done
+
+    echo ""
+    echo -e "${GREEN}Sync complete.${NC}"
+}
+
+cmd_relocate() {
+    local new_path="${1:-}"
+
+    if [ -z "$new_path" ]; then
+        echo -e "${RED}Error: relocate requires new bereshit path${NC}"
+        echo "Usage: sync-claude relocate /new/path/to/bereshit/word/claude"
+        return 1
+    fi
+
+    # Verify new path exists
+    if [ ! -d "$new_path" ]; then
+        echo -e "${RED}Error: Path does not exist: $new_path${NC}"
+        return 1
+    fi
+
+    # Verify it looks like a claude config directory
+    if [ ! -f "$new_path/CLAUDE.md" ] || [ ! -d "$new_path/hooks" ]; then
+        echo -e "${RED}Error: Path doesn't look like a claude config directory${NC}"
+        echo "Expected to find CLAUDE.md and hooks/ in $new_path"
+        return 1
+    fi
+
+    print_section "Relocating Symlinks"
+    echo ""
+    echo "New source: $new_path"
+    echo "Target: $HOME_CLAUDE"
+    echo ""
+
+    # Update BERESHIT_CLAUDE and run sync
+    BERESHIT_CLAUDE="$new_path"
+    cmd_sync
+}
+
+cmd_status() {
+    print_section "Symlink Status"
+    echo ""
+    echo "Bereshit source: $BERESHIT_CLAUDE"
+    echo "Home claude:     $HOME_CLAUDE"
+    echo ""
+
+    cmd_verify
+}
+
+show_usage() {
+    echo "Usage: sync-claude <command> [args]"
+    echo ""
+    echo "Commands:"
+    echo "  verify              Check all symlinks are valid"
+    echo "  sync                Update symlinks to current bereshit location"
+    echo "  relocate <path>     Update symlinks after moving bereshit"
+    echo "  status              Show current symlink status"
+    echo ""
+    echo "Examples:"
+    echo "  sync-claude verify"
+    echo "  sync-claude sync"
+    echo "  sync-claude relocate /new/path/to/bereshit/word/claude"
+}
+
+# ============================================================================
+# CLOSING
+# ============================================================================
+
+main() {
+    local cmd="${1:-}"
+
+    print_header
+
+    case "$cmd" in
+        verify)
+            cmd_verify
+            ;;
+        sync)
+            cmd_sync
+            ;;
+        relocate)
+            cmd_relocate "${2:-}"
+            ;;
+        status)
+            cmd_status
+            ;;
+        -h|--help|help)
+            show_usage
+            ;;
+        "")
+            show_usage
+            ;;
+        *)
+            echo -e "${RED}Unknown command: $cmd${NC}"
+            echo ""
+            show_usage
+            exit 1
+            ;;
+    esac
+}
+
+main "$@"

@@ -19,7 +19,6 @@ go 1.24.4
 // ============================================================================
 
 use (
-
 	// ────────────────────────────────────────────────────────────────
 	// System Runtime - Commands and Libraries
 	// ────────────────────────────────────────────────────────────────
@@ -41,7 +40,6 @@ use (
 	// ./cpi-si/system/runtime/lib/debugging // Log analysis (TODO: needs go.mod)
 	./cpi-si/system/runtime/lib/display // Formatted output v3.0.0 (8 primitives, direct access)
 	./cpi-si/system/runtime/lib/instance // Instance identity provider
-	./cpi-si/system/runtime/lib/logging // Execution narrative v1.0.0 (7 files, switchboard)
 
 	// ────────────────────────────────────────────────────────────────
 	// Rungs - Library components (ladder dependencies)
@@ -51,6 +49,7 @@ use (
 	//--- Foundational Rungs (minimal dependencies) ---
 
 	./cpi-si/system/runtime/lib/jsonc // JSONC comment stripping
+	./cpi-si/system/runtime/lib/logging // Execution narrative v1.0.0 (7 files, switchboard)
 	./cpi-si/system/runtime/lib/patterns // Pattern recognition
 	./cpi-si/system/runtime/lib/planner // Planning utilities
 	./cpi-si/system/runtime/lib/privacy // Privacy utilities

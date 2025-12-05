@@ -1,0 +1,277 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════════════════
+# METADATA BLOCK
+# ═══════════════════════════════════════════════════════════════════════════════
+#
+# Key:         CPSI-TOOL-bseed
+# Type:        Shell Tool
+# Version:     a-00.10
+# Created:     2025-12-03
+# Author:      Nova Dawn (CPI-SI)
+#
+# Purpose:     Copy and adapt bereshit seed templates based on file extension
+# Biblical:    "And God said, Let the earth bring forth... yielding seed" - Genesis 1:11
+#
+# Usage:       bseed [OPTIONS] <extension> <destination>
+#
+# Options:
+#   -l, --list     List available templates
+#   -t, --type     Specify template type (base, index, community)
+#   -k, --key      Specify the new document key
+#   -h, --help     Show this help
+#
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SETUP BLOCK
+# ═══════════════════════════════════════════════════════════════════════════════
+
+set -euo pipefail
+
+# Bereshit seed location
+BERESHIT_ROOT="/media/seanje-lenox-wise/Project/CreativeWorkzStudio_LLC/bereshit"
+SEED_ROOT="$BERESHIT_ROOT/word/seed"
+
+# Default options
+LIST_MODE=false
+TEMPLATE_TYPE="base"
+NEW_KEY=""
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# BODY BLOCK
+# ═══════════════════════════════════════════════════════════════════════════════
+
+show_help() {
+    cat << 'EOF'
+bseed - Bereshit Seed (template copier)
+
+USAGE:
+    bseed [OPTIONS] <extension> <destination>
+    bseed -l
+
+OPTIONS:
+    -l, --list      List available templates
+    -t, --type      Template type: base, index, community (default: base)
+    -k, --key       New document key (auto-generated if not specified)
+    -h, --help      Show this help
+
+EXAMPLES:
+    bseed -l                           # List all templates
+    bseed .md ./docs/README.md         # Copy markdown base template
+    bseed -t index .md ./docs/INDEX.md # Copy markdown index template
+    bseed .adoc ./docs/spec.adoc       # Copy asciidoc template
+    bseed .editorconfig ./.editorconfig # Copy editorconfig template
+
+TEMPLATE CATEGORIES:
+    code/           Code templates (Go, C, etc.)
+    data/           Data templates (config, YAML, etc.)
+    documentation/  Doc templates (AsciiDoc, Markdown, Typst)
+
+SUPPORTED EXTENSIONS:
+    .md             Markdown (base, index, community)
+    .adoc           AsciiDoc (base)
+    .typ            Typst (base)
+    .editorconfig   EditorConfig (data)
+    .go             Go (pending - use compiler templates)
+
+EOF
+}
+
+# List available templates
+list_templates() {
+    local name
+    local ext
+    local has_code_templates=false
+
+    echo "=== Available Bereshit Seed Templates ==="
+    echo ""
+
+    echo "DOCUMENTATION:"
+    for f in "$SEED_ROOT/documentation"/B-word-seed-doc-*; do
+        [[ -f "$f" ]] || continue
+        name="${f##*/}"
+        ext="${name##*.}"
+        echo "  .$ext  →  $name"
+    done
+
+    echo ""
+    echo "DATA:"
+    for f in "$SEED_ROOT/data"/B-word-seed-data-*; do
+        [[ -f "$f" ]] || continue
+        name="${f##*/}"
+        # Skip spec files (they're specifications, not templates)
+        [[ "$name" == *"-spec."* ]] && continue
+        ext="${name##*.}"
+        echo "  .$ext  →  $name"
+    done
+
+    echo ""
+    echo "CODE:"
+    for f in "$SEED_ROOT/code"/B-word-seed-code-*; do
+        [[ -f "$f" ]] || continue
+        has_code_templates=true
+        name="${f##*/}"
+        ext="${name##*.}"
+        echo "  .$ext  →  $name"
+    done
+
+    # Check if empty
+    if [[ "$has_code_templates" == false ]]; then
+        echo "  (no code templates yet - use compiler templates)"
+    fi
+}
+
+# Find template for extension
+find_template() {
+    local ext="$1"
+    local type="$2"
+    local template=""
+
+    # Remove leading dot if present
+    ext="${ext#.}"
+
+    case "$ext" in
+        md)
+            case "$type" in
+                base)      template="$SEED_ROOT/documentation/B-word-seed-doc-markdown-base.md" ;;
+                index)     template="$SEED_ROOT/documentation/B-word-seed-doc-markdown-index.md" ;;
+                community) template="$SEED_ROOT/documentation/B-word-seed-doc-markdown-community.md" ;;
+                *)         template="$SEED_ROOT/documentation/B-word-seed-doc-markdown-base.md" ;;
+            esac
+            ;;
+        adoc)
+            template="$SEED_ROOT/documentation/B-word-seed-doc-asciidoc-base.adoc"
+            ;;
+        typ)
+            template="$SEED_ROOT/documentation/B-word-seed-doc-typst-base.typ"
+            ;;
+        editorconfig)
+            template="$SEED_ROOT/data/B-word-seed-data-editorconfig.editorconfig"
+            ;;
+        go)
+            # Fallback to compiler templates
+            local compiler_templates="/media/seanje-lenox-wise/Project/CreativeWorkzStudio_LLC/divisions/tech/language/compiler/templates"
+            if [[ -d "$compiler_templates" ]]; then
+                template="$compiler_templates/go-main-executable.go"
+            else
+                echo "Error: No Go templates available" >&2
+                return 1
+            fi
+            ;;
+        *)
+            echo "Error: No template for extension: .$ext" >&2
+            echo "Use 'bseed -l' to list available templates" >&2
+            return 1
+            ;;
+    esac
+
+    if [[ ! -f "$template" ]]; then
+        echo "Error: Template not found: $template" >&2
+        return 1
+    fi
+
+    echo "$template"
+}
+
+# Generate key from destination path
+generate_key() {
+    local dest="$1"
+    local filename="${dest##*/}"
+    local name="${filename%.*}"
+
+    # Convert to uppercase, replace special chars with dash
+    echo "$name" | tr '[:lower:]' '[:upper:]' | tr ' _' '-'
+}
+
+# Copy and adapt template
+copy_template() {
+    local template="$1"
+    local dest="$2"
+    local key="$3"
+
+    # Get parent directory
+    local dest_dir="${dest%/*}"
+    if [[ "$dest_dir" != "$dest" ]] && [[ ! -d "$dest_dir" ]]; then
+        mkdir -p "$dest_dir"
+    fi
+
+    # Copy template
+    cp "$template" "$dest"
+
+    # If key specified, try to update it in the file
+    if [[ -n "$key" ]]; then
+        # Try to replace key: line (YAML frontmatter - lowercase)
+        if grep -q "^key:" "$dest" 2>/dev/null; then
+            sed -i "s/^key:.*$/key: $key/" "$dest"
+        # Try to replace Key: line (other formats)
+        elif grep -q "Key:" "$dest" 2>/dev/null; then
+            sed -i "s/Key:.*$/Key: $key/" "$dest"
+        fi
+    fi
+
+    echo "Created: $dest"
+    echo "  From:  ${template##*/}"
+    [[ -n "$key" ]] && echo "  Key:   $key"
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# CLOSING BLOCK
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -l|--list)
+            LIST_MODE=true
+            shift
+            ;;
+        -t|--type)
+            TEMPLATE_TYPE="$2"
+            shift 2
+            ;;
+        -k|--key)
+            NEW_KEY="$2"
+            shift 2
+            ;;
+        -h|--help)
+            show_help
+            exit 0
+            ;;
+        -*)
+            echo "Unknown option: $1" >&2
+            echo "Use -h for help" >&2
+            exit 1
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+# List mode
+if [[ "$LIST_MODE" == true ]]; then
+    list_templates
+    exit 0
+fi
+
+# Require extension and destination
+if [[ $# -lt 2 ]]; then
+    echo "Error: Extension and destination required" >&2
+    echo "Usage: bseed <extension> <destination>" >&2
+    echo "Use -h for help" >&2
+    exit 1
+fi
+
+EXT="$1"
+DEST="$2"
+
+# Find template
+TEMPLATE="$(find_template "$EXT" "$TEMPLATE_TYPE")" || exit 1
+
+# Generate key if not specified
+if [[ -z "$NEW_KEY" ]]; then
+    NEW_KEY="$(generate_key "$DEST")"
+fi
+
+# Copy template
+copy_template "$TEMPLATE" "$DEST" "$NEW_KEY"

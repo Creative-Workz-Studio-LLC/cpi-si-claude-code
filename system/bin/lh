@@ -1,0 +1,237 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════════════════
+# METADATA BLOCK
+# ═══════════════════════════════════════════════════════════════════════════════
+#
+# Key:         CPSI-TOOL-lh
+# Type:        Shell Tool
+# Version:     a-00.10
+# Created:     2025-12-03
+# Author:      Nova Dawn (CPI-SI)
+#
+# Purpose:     List directories with health status (bereshit filesystem navigation)
+# Biblical:    "In the beginning God created the heaven and the earth." - Genesis 1:1
+#
+# Usage:       lh [OPTIONS] [DIRECTORY]
+#
+# Options:
+#   -s, --sort     Sort by health (worst first = attention-needed)
+#   -r, --reverse  Reverse sort (best first)
+#   -f, --full     Show full 5-trit breakdown [+○-++]
+#   -n, --numeric  Show numeric score 0-100
+#   -h, --help     Show this help
+#
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SETUP BLOCK
+# ═══════════════════════════════════════════════════════════════════════════════
+
+set -euo pipefail
+
+# Default options
+SORT=false
+REVERSE=false
+DISPLAY_MODE="trit"  # trit, full, numeric
+TARGET_DIR="."
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# BODY BLOCK
+# ═══════════════════════════════════════════════════════════════════════════════
+
+show_help() {
+    cat << 'EOF'
+lh - List Health (bereshit filesystem navigation)
+
+USAGE:
+    lh [OPTIONS] [DIRECTORY]
+
+OPTIONS:
+    -s, --sort      Sort by health (worst first = attention-needed)
+    -r, --reverse   Reverse sort (best first)
+    -f, --full      Show full 5-trit breakdown [+○-++]
+    -n, --numeric   Show numeric score 0-100
+    -h, --help      Show this help
+
+DISPLAY MODES:
+    Default:    Single trit  (+, ○, -)
+    --full:     5-trit       [+○-++]
+    --numeric:  Score        [73]
+
+EXAMPLES:
+    lh                      # List current directory
+    lh bereshit/            # List bereshit children
+    lh -s                   # Sort by health (worst first)
+    lh -s -r                # Sort by health (best first)
+    lh -f bereshit/word/    # Show full breakdown
+
+HEALTH VALUES:
+    +  (200-242)  Granted - healthy
+    ○  (51-199)   Deferred - neutral
+    -  (0-50)     Denied - needs attention
+
+EOF
+}
+
+# Read health value from .health file
+read_health() {
+    local dir="$1"
+    local health_file="$dir/.health"
+
+    if [[ -f "$health_file" ]]; then
+        # Read first byte as decimal
+        od -An -tu1 -N1 "$health_file" 2>/dev/null | tr -d ' '
+    else
+        echo "121"  # Default: neutral [○○○○○]
+    fi
+}
+
+# Convert trite to single trit display
+trite_to_trit() {
+    local val="$1"
+    if [[ "$val" -ge 200 ]]; then
+        echo "+"
+    elif [[ "$val" -le 50 ]]; then
+        echo "-"
+    else
+        echo "○"
+    fi
+}
+
+# Convert trite to 5-trit display
+trite_to_full() {
+    local val="$1"
+    local result=""
+    local remaining="$val"
+
+    # Decode 5 trits (T₀ to T₄)
+    for _ in {0..4}; do
+        local trit=$((remaining % 3))
+        remaining=$((remaining / 3))
+
+        case "$trit" in
+            0) result="-$result" ;;
+            1) result="○$result" ;;
+            2) result="+$result" ;;
+        esac
+    done
+
+    echo "[$result]"
+}
+
+# Convert trite to numeric score (0-100)
+trite_to_score() {
+    local val="$1"
+
+    if [[ "$val" -gt 242 ]]; then
+        echo "50"  # Escape values = neutral
+        return
+    fi
+
+    # Simple linear mapping: 0→0, 121→50, 242→100
+    echo "$((val * 100 / 242))"
+}
+
+# Format health for display
+format_health() {
+    local val="$1"
+
+    case "$DISPLAY_MODE" in
+        trit)
+            trite_to_trit "$val"
+            ;;
+        full)
+            trite_to_full "$val"
+            ;;
+        numeric)
+            printf "[%3d]" "$(trite_to_score "$val")"
+            ;;
+    esac
+}
+
+# List directory with health
+list_with_health() {
+    local dir="$1"
+    local entries=()
+    local val
+    local name
+    local display
+
+    # Collect entries
+    for item in "$dir"*/; do
+        [[ -d "$item" ]] || continue
+        name="${item%/}"
+        name="${name##*/}"
+        val="$(read_health "$item")"
+        entries+=("$val:$name")
+    done
+
+    # Sort if requested
+    if [[ "$SORT" == true ]]; then
+        local sorted_entries=()
+        if [[ "$REVERSE" == true ]]; then
+            # Best first (descending)
+            mapfile -t sorted_entries < <(printf '%s\n' "${entries[@]}" | sort -t: -k1 -rn)
+        else
+            # Worst first (ascending) - attention-needed first
+            mapfile -t sorted_entries < <(printf '%s\n' "${entries[@]}" | sort -t: -k1 -n)
+        fi
+        entries=("${sorted_entries[@]}")
+    fi
+
+    # Display
+    for entry in "${entries[@]}"; do
+        val="${entry%%:*}"
+        name="${entry#*:}"
+        display="$(format_health "$val")"
+        echo "$display $name/"
+    done
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# CLOSING BLOCK
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -s|--sort)
+            SORT=true
+            shift
+            ;;
+        -r|--reverse)
+            REVERSE=true
+            shift
+            ;;
+        -f|--full)
+            DISPLAY_MODE="full"
+            shift
+            ;;
+        -n|--numeric)
+            DISPLAY_MODE="numeric"
+            shift
+            ;;
+        -h|--help)
+            show_help
+            exit 0
+            ;;
+        -*)
+            echo "Unknown option: $1" >&2
+            echo "Use -h for help" >&2
+            exit 1
+            ;;
+        *)
+            TARGET_DIR="$1"
+            shift
+            ;;
+    esac
+done
+
+# Ensure directory exists
+if [[ ! -d "$TARGET_DIR" ]]; then
+    echo "Error: Directory not found: $TARGET_DIR" >&2
+    exit 1
+fi
+
+# Run
+list_with_health "$TARGET_DIR"
